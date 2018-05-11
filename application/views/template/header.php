@@ -51,3 +51,4 @@
 
 </head>
 <body>
+<button class="goto-top" onclick="topFunction()" id="toTop" title="Go to top">Top</button>

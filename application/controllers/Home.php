@@ -217,5 +217,33 @@ occurred, please try again.');
         redirect('/home');
     }
 
+    function vypisNavstevy(){
+        header("Access-Control-Allow-Origin: *");
+
+        define('DB_HOST', 'localhost');
+        define('DB_USERNAME', 'root');
+        define('DB_PASSWORD', '');
+        define('DB_NAME', 'hrady_a_zamky');
+
+        $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+        if(!$mysqli){
+            die("Connection failed: " . $mysqli->error);
+        }
+
+        $query = sprintf("SELECT COUNT(ip_adress) AS Pocet, CONCAT(DAY(date), '.', MONTH(date), '.', YEAR(date)) AS Datum FROM navstevnost GROUP BY Datum ORDER BY date DESC LIMIT 7");
+
+        $result = $mysqli->query($query);
+
+        $data = array();
+        foreach ($result as $row) {
+            $data[] = $row;
+        }
+
+        $result->close();
+        $mysqli->close();
+
+        echo json_encode($data);
+    }
 
 }

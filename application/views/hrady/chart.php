@@ -1,4 +1,4 @@
-<h1 id="statistika">Štatistiky</h1>
+<div id="statistika" style="top: 100px"><h1>Štatistiky</h1>
 <div>
     <div style="float: left; width: 50%">
         <canvas id="myChart" width="500" height="400" style="margin-left: 20%;">
@@ -9,10 +9,54 @@
         </canvas>
     </div>
 </div>
+</div>
 <br>
 <br>
 <script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            url: "<?php echo site_url("home/vypisNavstevy") ?>",
+            method: "GET",
+            success: function(Jdata) {
+                var data = Jdata;
+                console.log(data);
+                console.log(data[3]);
+                var cas = [];
+                var ludia = [];
 
+                for(var i in data) {
+                    cas.push(data[i].datum);
+                    ludia.push(data[i].pocet);
+                    console.log(data[i].datum);
+                }
+
+                var chartdata = {
+                    labels: cas,
+                    datasets : [
+                        {
+                            label: 'Návštevnosť počas uplynulých mesiacov',
+                            fill: false,
+                            borderColor: "rgb(75, 192, 192)",
+                            lineTension: 0.1,
+                            data: ludia
+                        }
+                    ]
+                };
+
+                var ctx = $("#myChart");
+
+                var barGraph = new Chart(ctx, {
+                    type: 'bar',
+                    data: chartdata,
+                    options: {responsive: false}
+                });
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    });
+/*
     var ctx = document.getElementById("myChart").getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: "line",
@@ -29,28 +73,7 @@
                     options: {responsive: false}
                 });
 
-    /* var myChart = new Chart(ctx, {
-         type: 'line',
-         data: [{
-             x: 10,
-             y: 20
-         }, {
-             x: 15,
-             y: 10
-         }],
-         options: {
-             responsive: true,
-             maintainAspectRatio: true,
-             scales: {
-                 yAxes: [{
-                     ticks: {
-                         beginAtZero:true
-                     }
-                 }]
-             }
-         }
-     });*/
-
+*/
     var ctx2 = document.getElementById("myChart2").getContext('2d');
     var myChart2 = new Chart(ctx2, {
             type: 'pie',
@@ -65,6 +88,7 @@
             options: {
                 responsive: false
             }
-        })
-    ;
+        });
+
+
 </script>
