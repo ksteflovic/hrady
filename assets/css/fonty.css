@@ -1,0 +1,129 @@
+#hlavny_nadpis_v_navbare {
+    font-family: 'Pacifico', cursive;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+}
+body {
+    background-image: url("../fotky_hrady/cicnamy.jpg");
+    background-repeat: repeat, repeat-x, repeat-y;
+    z-index: -20;
+}
+
+#hlavny_nadpis_v_navbare2 {
+    font-family: 'Sacramento', cursive;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+}
+
+#hlavny_nadpis_v_navbare3 {
+    font-family: 'Grand Hotel', cursive;
+    font-size: 35px;
+    color: white;
+    cursor: default;
+}
+
+#nadpis_na_stranke {
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    color: #2a2730;
+}
+
+.parallax {
+    min-height: 180px;
+    opacity: 0.5;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallaxPrvy {
+    background-image: url("../fotky_hrady/orava.jpg");
+}
+
+.parallaxDruhy {
+    background-image: url("../fotky_hrady/hogwarts.jpg");
+}
+
+#map {
+    height: 350px;
+    width: 400px;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    position: relative;
+    margin: auto;
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+    z-index: 2;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+
+#text_na_stred {
+    font-size: 90px;
+    color: ghostwhite;
+    position:absolute;
+    top: 0;
+    width: 100%;
+    text-align:right;
+    vertical-align: middle;
+    margin: auto;
+    display: inline-block;
+    left:0;
+    right:0;
+    bottom:0;
+    height:30px;
+}
+
