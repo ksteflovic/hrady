@@ -40,8 +40,6 @@ class Home extends CI_Controller
             'ip_adress' => $ip,
             'date' => $date
         );
-
-        // Calling model
         $id = $this->Navstevnost_model->insert($navsteva);
     }
 
@@ -69,7 +67,6 @@ class Home extends CI_Controller
         foreach ($castles->result() as $castle) {
             $pole[] = array(
                 $castle->id,
-                $castle->picture,
                 $castle->nazov,
                 $castle->Typ,
                 $castle->idMesto,
@@ -219,7 +216,7 @@ occurred, please try again.');
 
     function vypisNavstevy(){
         header("Access-Control-Allow-Origin: *");
-        
+
         define('DB_HOST', 'localhost');
         define('DB_USERNAME', 'root');
         define('DB_PASSWORD', '');
@@ -232,6 +229,35 @@ occurred, please try again.');
         }
 
         $query = sprintf("SELECT COUNT(ip_adress) AS Pocet, CONCAT(DAY(date), '.', MONTH(date), '.', YEAR(date)) AS Datum FROM navstevnost GROUP BY Datum ORDER BY date DESC LIMIT 7");
+
+        $result = $mysqli->query($query);
+
+        $data = array();
+        foreach ($result as $row) {
+            $data[] = $row;
+        }
+
+        $result->close();
+        $mysqli->close();
+
+        echo json_encode($data);
+    }
+
+    function vypisNavstevy2(){
+        header("Access-Control-Allow-Origin: *");
+
+        define('DB_HOST', 'localhost');
+        define('DB_USERNAME', 'root');
+        define('DB_PASSWORD', '');
+        define('DB_NAME', 'hrady_a_zamky');
+
+        $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+        if(!$mysqli){
+            die("Connection failed: " . $mysqli->error);
+        }
+
+        $query = sprintf("SELECT DISTINCT HOUR(date) AS Cas, COUNT(date) AS Pocet FROM navstevnost GROUP BY Cas");
 
         $result = $mysqli->query($query);
 

@@ -16,7 +16,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Avatar</th> <!-- Obrazok -->
                     <th>Name</th>
                     <th>Type</th>
                     <th>Location</th>
@@ -32,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <tbody>
                 <tr>
                     <td></td>
-                    <td></td> <!-- <img src="H.gif" alt="" border=3 height=100 width=100></img> -->
+                     <!-- <img src="H.gif" alt="" border=3 height=100 width=100></img> -->
                     <td></td>
                     <td></td>
                     <td></td>
