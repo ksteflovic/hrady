@@ -49,6 +49,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row">
     </div>
 </div>
+<script>
+    function otvorView(id) {
+        window.open("home/view/"+id);
+    }
+    function otvorUpravu(id) {
+        window.open("home/edit/"+id);
+    }
+    function otvorVymaz(id) {
+        window.open("home/delete/"+id);
+    }
+</script>
 <!--
 <div class="container">
     <?php if (!empty($success_msg)) { ?>

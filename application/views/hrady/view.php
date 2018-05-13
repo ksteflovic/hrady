@@ -4,10 +4,14 @@
             <div class="panel-heading">Detaily o hrade <a href="<?php
                 echo site_url('home/'); ?>" class="glyphicon glyphicon-arrow-left
 pull-right"></a></div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <div class="panel-body">
                     <h1 id="nadpis_na_stranke"><?php echo
-                        !empty($hrady['nazov'])?$hrady['nazov']
-                            :''; ?></h1>
+                        !empty($hrady['nazov']) ? $hrady['nazov'] : '' ; ?></h1>
                 <div class="form-group">
                     <label>Temperature:</label>
                     <p><?php echo

@@ -106,9 +106,9 @@ class Home extends CI_Controller
                 } else {
                 $sub_array[] = '<td><span class="badge badge-danger">'. mb_strtoupper($hrad->Stav).'</span></td>';
                         }
-            $sub_array[] = '<a href="<?php echo site_url(\'home/view/\' .$hrad->id.\'); ?>"<button type="button" class="btn btn-outline-success" id="'.$hrad->id.'">Detail</button></a>';
-            $sub_array[] = '<button type="button" class="btn btn-outline-warning" id="'.$hrad->id.'">Uprav</button>';
-            $sub_array[] = '<button type="button" class="btn btn-outline-danger" id="'.$hrad->id.'">Vymaž</button>';
+            $sub_array[] = '<button type="button" class="btn btn-outline-success" onclick="otvorView(this.id)" id="'.$hrad->id.'">Detail</button>';
+            $sub_array[] = '<button type="button" class="btn btn-outline-warning" onclick="otvorUpravu(this.id)" id="'.$hrad->id.'">Uprav</button>';
+            $sub_array[] = '<button type="button" class="btn btn-outline-danger" onclick="otvorVymaz(this.id)" id="'.$hrad->id.'">Vymaž</button>';
             $pole[] = $sub_array;
         }
 
