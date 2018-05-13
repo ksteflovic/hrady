@@ -20,9 +20,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <thead>
                 <tr>
                     <th>#</th>
+                    <th>Avatar</th>
                     <th>Name</th>
                     <th>Type</th>
-                    <th>Location</th>
                     <th>Status</th>
                     <th></th>
                     <th></th>
@@ -33,8 +33,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <tbody>
                 <tr>
                     <td></td>
-                    <!-- <img src="H.gif" alt="" border=3 height=100 width=100></img> -->
                     <td></td>
+                    <!-- <img src="H.gif" alt="" border=3 height=100 width=100></img> -->
                     <td></td>
                     <td></td>
                     <td></td>

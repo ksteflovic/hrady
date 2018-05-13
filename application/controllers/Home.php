@@ -96,11 +96,16 @@ class Home extends CI_Controller
         foreach ($hrady->result() as $hrad) {
             $sub_array = array();
             $sub_array[] = $hrad->id;
+            $sub_array[] = '<img src="'.$hrad->picture.'" class="doTabulky lazyload" />'; //$hrad->id;
             $sub_array[] = $hrad->nazov;
             $sub_array[] = $hrad->Typ;
-            $sub_array[] = $hrad->idMesto;
-            $sub_array[] = $hrad->Stav;
-
+            if (strpos($hrad->Stav, 're verejnosť') !== false) {
+                $sub_array[] = '<td><span class="badge badge-success">'. mb_strtoupper($hrad->Stav).'</span></td>';
+            } elseif (strpos($hrad->Stav, 'Ruiny') !== false || strpos($hrad->Stav, 'achoval') !== false) {
+                $sub_array[] = '<td><span class="badge badge-warning">'. mb_strtoupper($hrad->Stav).'</span></td>';
+                } else {
+                $sub_array[] = '<td><span class="badge badge-danger">'. mb_strtoupper($hrad->Stav).'</span></td>';
+                        }
             $sub_array[] = '<button type="button" class="btn btn-outline-primary" id="'.$hrad->id.'">Pozri</button>';
             $sub_array[] = '<button type="button" class="btn btn-outline-warning" id="'.$hrad->id.'">Uprav</button>';
             $sub_array[] = '<button type="button" class="btn btn-outline-danger" id="'.$hrad->id.'">Vymaz</button>';
