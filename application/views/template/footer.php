@@ -3,6 +3,8 @@
 <script type="text/javascript">
     $(document).ready( function () {
         $('#CastleTable').DataTable({
+            "pageLength": 5,
+            "lengthMenu": [ 3, 5, 10, 25, 50, 75, 100, "All"],
             "ajax":{
                 "url" : "<?php echo site_url("home/castles_page") ?>",
                 "type" : 'GET'

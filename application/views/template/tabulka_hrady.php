@@ -24,18 +24,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <th>Type</th>
                     <th>Location</th>
                     <th>Status</th>
-                    <!--
-                    <th><button type="button" class="btn btn-outline-primary">Primary</button></th>
-                    <th><button type="button" class="btn btn-outline-warning">Warning</button></th>
-                    <th><button type="button" class="btn btn-outline-dark">Dark</button></th>
-                    <th><button type="button" class="btn btn-outline-success">Success</button></th>
-                    -->
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td></td>
                     <!-- <img src="H.gif" alt="" border=3 height=100 width=100></img> -->
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -124,12 +125,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </tr>
         <?php endif; ?>
         </tbody>
-                    <p><?php echo $links; ?></p>
+
             </div>
-            <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
+
         </div>
         </table>
     </div>
+    <?php echo $this->pagination->create_links(); ?>
+    <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>
 </div>
 </div>

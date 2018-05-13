@@ -35,8 +35,21 @@ class Home extends CI_Controller
         $id = $this->Navstevnost_model->insert($navsteva);
 
 
+        $this->load->library('table');
+        $this->load->library('pagination');
+        $this->load->helper('form');
+        $this->load->helper('url');
+        $this->load->database(); //load library database
 
+        $num_rows = $this->db->count_all("hrady");
+        $config["base_url"] = base_url() . "home/index";
+        $config['total_rows'] = $num_rows;
+        $config['per_page'] = 5;
+        $config['num_links'] = $num_rows;
+        $config['use_page_numbers'] = TRUE;
+        $this->pagination->initialize($config);
 
+/*
         $this->load->library("pagination");
 
         $config = array();
@@ -48,13 +61,13 @@ class Home extends CI_Controller
         $this->pagination->initialize($config);
 
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data["results"] = $this->Hrady_model-> fetch_castles($config["per_page"], $page);
+        $data["results"] = $this->Hrady_model->fetch_castles($config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
-
+*/
         $this->load->view('template/header');
         $this->load->view('template/navigation');
         $this->load->view('content');
-        $this->load->view('template/tabulka_hrady',  $data);
+        $this->load->view('template/tabulka_hrady', $data);
         $this->load->view('hrady/chart');
         $this->load->view('template/footer');
     }
@@ -81,13 +94,17 @@ class Home extends CI_Controller
         $pole = array();
 
         foreach ($hrady->result() as $hrad) {
-            $pole[] = array(
-                $hrad->id,
-                $hrad->nazov,
-                $hrad->Typ,
-                $hrad->idMesto,
-                $hrad->Stav
-            );
+            $sub_array = array();
+            $sub_array[] = $hrad->id;
+            $sub_array[] = $hrad->nazov;
+            $sub_array[] = $hrad->Typ;
+            $sub_array[] = $hrad->idMesto;
+            $sub_array[] = $hrad->Stav;
+
+            $sub_array[] = '<button type="button" class="btn btn-outline-primary" id="'.$hrad->id.'">Pozri</button>';
+            $sub_array[] = '<button type="button" class="btn btn-outline-warning" id="'.$hrad->id.'">Uprav</button>';
+            $sub_array[] = '<button type="button" class="btn btn-outline-danger" id="'.$hrad->id.'">Vymaz</button>';
+            $pole[] = $sub_array;
         }
 
         $output = array(
@@ -228,10 +245,6 @@ again.';
     }
 
 
-
-
-
-    
     function vypisNavstevy()
     {
         header("Access-Control-Allow-Origin: *");
