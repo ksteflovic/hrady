@@ -23,7 +23,16 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-    <style>
+    <link rel="stylesheet" href="/vendor/bootstrap-combobox/css/bootstrap-combobox.css">
+
+    <script src="/vendor/bootstrap-combobox/js/bootstrap-combobox.js"></script>
+
+    <style type="text/css">
+        /* Adjust feedback icon position */
+        #productForm .selectContainer .form-control-feedback,
+        #productForm .inputGroupContainer .form-control-feedback {
+            right: -15px;
+        }
         .navbar-nav {
             flex-direction: row;
         }

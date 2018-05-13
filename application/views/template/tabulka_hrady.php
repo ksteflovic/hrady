@@ -51,13 +51,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 <script>
     function otvorView(id) {
-        window.open("home/view/"+id);
+        window.open("<?php echo site_url('home/view/')?>"+id,"_self");
     }
     function otvorUpravu(id) {
-        window.open("home/edit/"+id);
+        window.open("<?php echo site_url('home/edit/')?>"+id,"_self");
     }
     function otvorVymaz(id) {
-        window.open("home/delete/"+id);
+        window.open("<?php echo site_url('home/delete/')?>"+id,"_self");
     }
 </script>
 <!--

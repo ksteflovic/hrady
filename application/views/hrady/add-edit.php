@@ -12,9 +12,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><?php echo $action; ?>
-                    Hrady naše <a href="<?php echo site_url('hrady/'); ?>"
-                                 class="glyphicon glyphicon-arrow-left pull-right"></a></div>
+                <div class="panel-heading"><?php echo $action; ?><a href="<?php echo site_url('hrady/'); ?>">Naspat</a></div>
                 <div class="panel-body">
                     <form method="post" action="" class="form">
                         <div class="form-group">

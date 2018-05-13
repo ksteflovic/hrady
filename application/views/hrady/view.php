@@ -1,9 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="panel panel-default">
-            <div class="panel-heading">Detaily o hrade <a href="<?php
-                echo site_url('home/'); ?>" class="glyphicon glyphicon-arrow-left
-pull-right"></a></div>
+            <div class="panel-heading"><a href="<?php echo site_url('home/'); ?>" >NAspat</a></div>
             <br>
             <br>
             <br>

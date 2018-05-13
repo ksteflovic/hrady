@@ -127,15 +127,15 @@ class Home extends CI_Controller
         $data = array();
         if (!empty($id)) {
             $data['hrady'] = $this->Hrady_model->getRows($id);
+            $data['action'] = 'Detail hradu';
             //$data['title'] = $data['temperatures']['measurement_date'];
             //nahratie detailu zaznamu
-            $this->load->view('template/header');
-            $this->load->view('template/navigation');
-            $this->load->view('hrady/view');
+            $this->load->view('template/header', $data);
+            $this->load->view('template/navigateAEV', $data);
+            $this->load->view('hrady/view', $data);
             $this->load->view('template/footer');
         } else {
             redirect('/home');
-
         }
     }
 
@@ -177,10 +177,10 @@ class Home extends CI_Controller
         }
         $data['post'] = $postData;
         // $data['title'] = 'Create Temperature';
-        $data['action'] = 'Add';
+        $data['action'] = 'Pridanie nového hradu do databázy';
         //zobrazenie formulara pre vlozenie a editaciu dat
         $this->load->view('template/header', $data);
-        $this->load->view('template/navigation', $data);
+        $this->load->view('template/navigateAEV', $data);
         $this->load->view('hrady/add-edit', $data);
         $this->load->view('template/footer');
     }
@@ -226,9 +226,9 @@ again.';
         }
         $data['post'] = $postData;
         //$data['title'] = 'Update Temperature';
-        $data['action'] = 'Edit';
+        $data['action'] = 'Úprava existujúceho hradu';
         $this->load->view('template/header', $data);
-        $this->load->view('template/navigation', $data);
+        $this->load->view('template/navigateAEV', $data);
         $this->load->view('hrady/add-edit', $data);
         $this->load->view('template/footer');
     }
