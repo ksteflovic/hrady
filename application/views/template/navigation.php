@@ -39,7 +39,7 @@ function welcome()
     </ul>
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" style="font-family: 'Bitter', serif; font-size: 20px;">
                 Navigácia
             </a>
             <div class="dropdown-menu">
