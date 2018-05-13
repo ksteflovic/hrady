@@ -28,8 +28,10 @@
                             <label for="title">Stav</label>
                             <select name="stav">
                                 <option value="">Select...</option>
-                                <option value="preverejnost">Pre verejnosť dostupný</option>
-                                <option value="docasnenepistupny">Pre verejnosť dočasne neprístupný</option>
+                                <option value="preverejnost">Pre verejnosť</option>
+                                <option value="docasnenepistupny">Dočasne neprístupný</option>
+                                <option value="ruiny">Ruiny</option>
+                                <option value="docasnenepistupny"></option>
                                 <option value="docasnenepistupny">Neprístupný</option>
                             </select>
                         </div>

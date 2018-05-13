@@ -35,9 +35,12 @@ class Home extends CI_Controller
         $id = $this->Navstevnost_model->insert($navsteva);
 
 
+
+
         $this->load->library("pagination");
 
         $config = array();
+        $config["base_url"] = base_url() . "home/index";
         $config["total_rows"] = count($this->Hrady_model->getRows());
         $config["per_page"] = 5;
         $config["uri_segment"] = 3;
@@ -154,10 +157,10 @@ class Home extends CI_Controller
         // $data['title'] = 'Create Temperature';
         $data['action'] = 'Add';
         //zobrazenie formulara pre vlozenie a editaciu dat
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/navigacia', $data);
+        $this->load->view('template/header', $data);
+        $this->load->view('template/navigation', $data);
         $this->load->view('hrady/add-edit', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('template/footer');
     }
 
     // aktualizacia dat
@@ -202,11 +205,10 @@ again.';
         $data['post'] = $postData;
         //$data['title'] = 'Update Temperature';
         $data['action'] = 'Edit';
-        //zobrazenie formulara pre vlozenie a editaciu dat
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/navigation', $data);
+        $this->load->view('template/header', $data);
+        $this->load->view('template/navigation', $data);
         $this->load->view('hrady/add-edit', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('template/footer');
     }
 
     // odstranenie dat
@@ -217,11 +219,9 @@ again.';
             //odstranenie zaznamu
             $delete = $this->Hrady_model->delete($id);
             if ($delete) {
-                $this->session->set_userdata('success_msg', 'Castle has
-been removed successfully.');
+                $this->session->set_userdata('success_msg', 'Castle has been removed successfully.');
             } else {
-                $this->session->set_userdata('error_msg', 'Some problems
-occurred, please try again.');
+                $this->session->set_userdata('error_msg', 'Some problems occurred, please try again.');
             }
         }
         redirect('/home');

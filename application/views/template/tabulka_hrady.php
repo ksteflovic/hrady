@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <tbody>
                 <tr>
                     <td></td>
-                     <!-- <img src="H.gif" alt="" border=3 height=100 width=100></img> -->
+                    <!-- <img src="H.gif" alt="" border=3 height=100 width=100></img> -->
                     <td></td>
                     <td></td>
                     <td></td>
@@ -87,47 +87,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </thead>
                     <tbody id="userData">
                     <?php if (!empty($hrady)): foreach ($hrady
-                                                        as $hrad): ?>
-                        <tr>
-                            <td><?php echo '#' . $hrad['id']; ?></td>
-                            <td><?php echo $hrad['nazov']; ?></td>
-                            <td><?php echo $hrad['Typ']; ?></td>
-                            <?php
-                            if(strpos($hrad['Stav'], 're verejnosť') !== false){
-                                ?><td><span class="badge badge-success"><?php echo $hrad['Stav'] ?></span></td><?php
-                            }
-                            elseif(strpos($hrad['Stav'], 'Ruiny') !== false || strpos($hrad['Stav'], 'achoval') !== false){
-                                ?><td><span class="badge badge-warning"><?php echo $hrad['Stav'] ?></span></td><?php
-                            }
-                            else{?>
-                                <td><span <span class="badge badge-danger"><?php echo $hrad['Stav']; ?></span></td><?php
-                            }
+
+                    as $hrad): ?>
+                    <tr>
+                        <td><?php echo '#' . $hrad['id']; ?></td>
+                        <td><?php echo $hrad['nazov']; ?></td>
+                        <td><?php echo $hrad['Typ']; ?></td>
+                        <?php
+                        if (strpos($hrad['Stav'], 're verejnosť') !== false) {
                             ?>
-                            <td>
-                                <a href="<?php echo
-                                site_url('home/view/' . $hrad['id']); ?>" class="btn btn-outline-primary" role="button">Detaily</a>
-                                <a href="<?php echo
-                                site_url('home/edit/' . $hrad['id']); ?>" class="btn btn-outline-warning" role="button">Upraviť</a>
-                                <a href="<?php echo
-                                site_url('home/delete/' . $hrad['id']); ?>" class="btn btn-outline-danger" role="button" onclick="return confirm('Are you sure to delete?')">Vymazať</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; else: ?>
-                        <tr>
-                            <td colspan="8">Castle(s) not
-                                found......
-                            </td>
-                        </tr>
-                    <?php endif; ?>
-                    </tbody>
-                </table>
-                <p><?php echo $links; ?></p>
+                            <td><span class="badge badge-success"><?php echo mb_strtoupper($hrad['Stav']); ?></span></td><?php
+                        } elseif (strpos($hrad['Stav'], 'Ruiny') !== false || strpos($hrad['Stav'], 'achoval') !== false) {
+                            ?>
+                            <td><span class="badge badge-warning"><?php echo mb_strtoupper($hrad['Stav']); ?></span></td><?php
+                        } else {
+                            ?>
+                            <td><span <span class="badge badge-danger"><?php echo mb_strtoupper($hrad['Stav']); ?></span></td><?php
+                        }
+                        ?>
+                        <td>
+                            <a href="<?php echo
+                            site_url('home/view/' . $hrad['id']); ?>" class="btn btn-outline-primary" role="button">Detaily</a>
+                            <a href="<?php echo
+                            site_url('home/edit/' . $hrad['id']); ?>" class="btn btn-outline-warning" role="button">Upraviť</a>
+                            <a href="<?php echo
+                            site_url('home/delete/' . $hrad['id']); ?>" class="btn btn-outline-danger" role="button"
+                               onclick="return confirm('Are you sure to delete?')">Vymazať</a>
+                        </td>
+                    </tr>
+
+        <?php endforeach; else: ?>
+            <tr>
+                <td colspan="8">Castle(s) not
+                    found......
+                </td>
+            </tr>
+        <?php endif; ?>
+        </tbody>
+                    <p><?php echo $links; ?></p>
             </div>
             <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
         </div>
-            </div>
-        </div>
+        </table>
     </div>
+</div>
+</div>
 </div>
 <br>
 <br>
