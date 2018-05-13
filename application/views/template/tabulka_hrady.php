@@ -72,20 +72,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-default ">
-                <div class="panel-heading">Castles <a href="<?php echo
+                <div class="panel-heading"><a href="<?php echo
                     site_url('home/add/'); ?>" class="glyphicon glyphicon-plus pullright"
                     ></a></div>
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th width="5%">#</th>
-                        <th width="20%">Názov</th>
-                        <th width="10%">Stav</th>
-                        <th width="10%">Typ</th>
-                        <th width="20%">Adresa</th>
-                        <th width="15%">E-mail</th>
-                        <th width="10%">Telefon</th>
-                        <th width="20%">Webstranka</th>
+                        <th width="25%">Názov</th>
+                        <th width="15%">Typ</th>
+                        <th width="25%">Stav</th>
+                        <th width="30%">Upravy</th>
                     </tr>
                     </thead>
                     <tbody id="userData">
@@ -93,25 +90,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         as $hrad): ?>
                         <tr>
                             <td><?php echo '#' . $hrad['id']; ?></td>
-                            <td><?php echo
-                                $hrad['nazov']; ?></td>
-                            <td><?php echo $hrad['stav'];
-                                ?></td>
-                            <td><?php echo $hrad['typ']; ?></td>
-                            <td><?php echo $hrad['adresa']; ?></td>
-                            <td><?php echo $hrad['email']; ?></td>
-                            <td><?php echo $hrad['telefon']; ?></td>
-                            <td><?php echo $hrad['webstranka']; ?></td>
+                            <td><?php echo $hrad['nazov']; ?></td>
+                            <td><?php echo $hrad['Typ']; ?></td>
+                            <?php
+                            if(strpos($hrad['Stav'], 're verejnosť') !== false){
+                                ?><td><span class="badge badge-success"><?php echo $hrad['Stav'] ?></span></td><?php
+                            }
+                            elseif(strpos($hrad['Stav'], 'Ruiny') !== false || strpos($hrad['Stav'], 'achoval') !== false){
+                                ?><td><span class="badge badge-warning"><?php echo $hrad['Stav'] ?></span></td><?php
+                            }
+                            else{?>
+                                <td><span <span class="badge badge-danger"><?php echo $hrad['Stav']; ?></span></td><?php
+                            }
+                            ?>
                             <td>
                                 <a href="<?php echo
-                                site_url('home/view/' . $hrad['id']); ?>" class="glyphicon
-glyphicon-eye-open"></a>
+                                site_url('home/view/' . $hrad['id']); ?>" class="btn btn-outline-primary" role="button">Detaily</a>
                                 <a href="<?php echo
-                                site_url('home/edit/' . $hrad['id']); ?>" class="glyphicon
-glyphicon-edit"></a>
+                                site_url('home/edit/' . $hrad['id']); ?>" class="btn btn-outline-warning" role="button">Upraviť</a>
                                 <a href="<?php echo
-                                site_url('home/delete/' . $hrad['id']); ?>" class="glyphicon
-glyphicon-trash" onclick="return confirm('Are you sure to delete?')"></a>
+                                site_url('home/delete/' . $hrad['id']); ?>" class="btn btn-outline-danger" role="button" onclick="return confirm('Are you sure to delete?')">Vymazať</a>
                             </td>
                         </tr>
                     <?php endforeach; else: ?>
@@ -123,6 +121,10 @@ glyphicon-trash" onclick="return confirm('Are you sure to delete?')"></a>
                     <?php endif; ?>
                     </tbody>
                 </table>
+                <p><?php echo $links; ?></p>
+            </div>
+            <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
+        </div>
             </div>
         </div>
     </div>

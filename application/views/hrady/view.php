@@ -8,7 +8,7 @@ pull-right"></a></div>
                     <h1 id="nadpis_na_stranke"><?php echo
                         !empty($hrady['nazov'])?$hrady['nazov']
                             :''; ?></h1>
-                <!--<div class="form-group">
+                <div class="form-group">
                     <label>Temperature:</label>
                     <p><?php echo
                         !empty($temperatures['temperature'])?$temperatures['temperature']:'';
@@ -29,7 +29,7 @@ pull-right"></a></div>
                     <p><?php echo
                         !empty($temperatures['description'])?$temperatures['description']:'';
                         ?></p>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>

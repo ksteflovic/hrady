@@ -24,6 +24,19 @@ class Hrady_model extends CI_Model
         }
     }
 
+    public function fetch_castles($limit, $start) {
+        $this->db->limit($limit, $start);
+        $query = $this->db->get("hrady");
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+
     // vlozenie zaznamu
     public function insert($data = array())
     {

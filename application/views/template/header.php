@@ -4,7 +4,7 @@
     <title>Hrady a zámky</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
     <link rel="icon" href="https://s7.postimg.cc/yw35yq5vf/hrad_logo.png" type="image">
     <!-- FONTY -->
     <link href="<?php echo base_url();?>assets/css/fonty.css" rel="stylesheet">
@@ -20,7 +20,8 @@
     <link href="<?php echo base_url();?>assets/css/datatables.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/css/datatables.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
     <style>
         .navbar-nav {
             flex-direction: row;

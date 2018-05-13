@@ -24,7 +24,7 @@
 <br>
 <br>
 <br>
-<div class="parallax parallaxDruhy"></div>
+
 <br>
 <br>
 <br>

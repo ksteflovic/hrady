@@ -14,24 +14,16 @@ class Home extends CI_Controller
     {
         $data = array();
         //ziskanie sprav zo session
-        /*  if ($this->session->userdata('success_msg')) {
-              $data['success_msg'] = $this->session->userdata('success_msg');
-              $this->session->unset_userdata('success_msg');
-          }
-          if ($this->session->userdata('error_msg')) {
-              $data['error_msg'] = $this->session->userdata('error_msg');
-              $this->session->unset_userdata('error_msg');
-          }
-        */
-        $data['hrady'] = $this->Hrady_model->getRows();
+        if ($this->session->userdata('success_msg')) {
+            $data['success_msg'] = $this->session->userdata('success_msg');
+            $this->session->unset_userdata('success_msg');
+        }
+        if ($this->session->userdata('error_msg')) {
+            $data['error_msg'] = $this->session->userdata('error_msg');
+            $this->session->unset_userdata('error_msg');
+        }
 
-        $this->load->view('template/header');
-        $this->load->view('template/navigation');
-        $this->load->view('content');
-        $this->load->view('template/tabulka_hrady');
-        $this->load->view('hrady/chart');
-        $this->load->view('template/contact');
-        $this->load->view('template/footer');
+        $data['hrady'] = $this->Hrady_model->getRows();
 
         $ip = $this->input->ip_address();
         $date = date('Y-m-d H:i:s');
@@ -41,6 +33,28 @@ class Home extends CI_Controller
             'date' => $date
         );
         $id = $this->Navstevnost_model->insert($navsteva);
+
+
+        $this->load->library("pagination");
+        
+        $config = array();
+        $config["total_rows"] = $this->Hrady_model->getRows();
+        $config["per_page"] = 5;
+        $config["uri_segment"] = 3;
+
+        $this->pagination->initialize($config);
+
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data["results"] = $this->Hrady_model->
+        fetch_castles($config["per_page"], $page);
+        $data["links"] = $this->pagination->create_links();
+
+        $this->load->view('template/header');
+        $this->load->view('template/navigation');
+        $this->load->view('content');
+        $this->load->view('template/tabulka_hrady',  $data);
+        $this->load->view('hrady/chart');
+        $this->load->view('template/footer');
     }
 
 
@@ -60,24 +74,24 @@ class Home extends CI_Controller
         $start = intval($this->input->get("start"));
         $length = intval($this->input->get("length"));
 
-        $castles = $this->Hrady_model->get_hrady();
+        $hrady = $this->Hrady_model->get_hrady();
 
         $pole = array();
 
-        foreach ($castles->result() as $castle) {
+        foreach ($hrady->result() as $hrad) {
             $pole[] = array(
-                $castle->id,
-                $castle->nazov,
-                $castle->Typ,
-                $castle->idMesto,
-                $castle->Stav
+                $hrad->id,
+                $hrad->nazov,
+                $hrad->Typ,
+                $hrad->idMesto,
+                $hrad->Stav
             );
         }
 
         $output = array(
             "draw" => $draw,
-            "recordsTotal" => $castles->num_rows(),
-            "recordsFiltered" => $castles->num_rows(),
+            "recordsTotal" => $hrady->num_rows(),
+            "recordsFiltered" => $hrady->num_rows(),
             "data" => $pole
         );
         echo json_encode($output);
@@ -109,18 +123,18 @@ class Home extends CI_Controller
         if ($this->input->post('postSubmit')) {
             //definicia pravidiel validacie
             $this->form_validation->set_rules('nazov', 'Názov', 'required');
-            $this->form_validation->set_rules('stav', 'stav', 'required');
-            $this->form_validation->set_rules('typ', 'type', 'required');
-            $this->form_validation->set_rules('adresa', 'Adresa', 'required');
+            $this->form_validation->set_rules('Stav', 'Stav', 'required');
+            $this->form_validation->set_rules('Typ', 'type', 'required');
+            $this->form_validation->set_rules('Adresa', 'Adresa', 'required');
             $this->form_validation->set_rules('email', 'email', 'optional');
             $this->form_validation->set_rules('telefon', 'phone', 'optional');
             $this->form_validation->set_rules('webstranka', 'web page', 'optional');
             //priprava dat pre vlozenie
             $postData = array(
                 'nazov' => $this->input->post('nazov'),
-                'stav' => $this->input->post('stav'),
-                'typ' => $this->input->post('typ'),
-                'adresa' => $this->input->post('adresa'),
+                'stav' => $this->input->post('Stav'),
+                'typ' => $this->input->post('Typ'),
+                'adresa' => $this->input->post('Adresa'),
                 'email' => $this->input->post('email'),
                 'telefon' => $this->input->post('telefon'),
                 'webstranka' => $this->input->post('webstranka')
@@ -157,18 +171,18 @@ class Home extends CI_Controller
         if ($this->input->post('postSubmit')) {
             //definicia pravidiel validacie
             $this->form_validation->set_rules('nazov', 'Názov', 'required');
-            $this->form_validation->set_rules('stav', 'stav', 'required');
-            $this->form_validation->set_rules('typ', 'type', 'required');
-            $this->form_validation->set_rules('adresa', 'Adresa', 'required');
+            $this->form_validation->set_rules('Stav', 'stav', 'required');
+            $this->form_validation->set_rules('Typ', 'type', 'required');
+            $this->form_validation->set_rules('Adresa', 'Adresa', 'required');
             $this->form_validation->set_rules('email', 'email', 'optional');
             $this->form_validation->set_rules('telefon', 'phone', 'optional');
             $this->form_validation->set_rules('webstranka', 'web page', 'optional');
             // priprava dat pre aktualizaciu
             $postData = array(
                 'nazov' => $this->input->post('nazov'),
-                'stav' => $this->input->post('stav'),
-                'typ' => $this->input->post('typ'),
-                'adresa' => $this->input->post('adresa'),
+                'stav' => $this->input->post('Stav'),
+                'typ' => $this->input->post('Typ'),
+                'adresa' => $this->input->post('Adresa'),
                 'email' => $this->input->post('email'),
                 'telefon' => $this->input->post('telefon'),
                 'webstranka' => $this->input->post('webstranka')
@@ -214,7 +228,13 @@ occurred, please try again.');
         redirect('/home');
     }
 
-    function vypisNavstevy(){
+
+
+
+
+    
+    function vypisNavstevy()
+    {
         header("Access-Control-Allow-Origin: *");
 
         define('DB_HOST', 'localhost');
@@ -224,7 +244,7 @@ occurred, please try again.');
 
         $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-        if(!$mysqli){
+        if (!$mysqli) {
             die("Connection failed: " . $mysqli->error);
         }
 
@@ -243,7 +263,8 @@ occurred, please try again.');
         echo json_encode($data);
     }
 
-    function vypisNavstevy2(){
+    function vypisNavstevy2()
+    {
         header("Access-Control-Allow-Origin: *");
 
         define('DB_HOST', 'localhost');
@@ -253,7 +274,7 @@ occurred, please try again.');
 
         $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-        if(!$mysqli){
+        if (!$mysqli) {
             die("Connection failed: " . $mysqli->error);
         }
 
