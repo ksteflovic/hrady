@@ -1,3 +1,6 @@
+<div class="progress">
+    <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+</div>
 <div class="container">
     <div class="col-xs-12">
         <?php
@@ -12,7 +15,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><?php echo $action; ?><a href="<?php echo site_url('hrady/'); ?>">Naspat</a></div>
+                <div class="panel-heading"><a href="<?php echo site_url('hrady/'); ?>" ><i class="fas fa-angle-double-left" fa-5x"></i></a></div>
                 <div class="panel-body">
                     <form method="post" action="" class="form">
                         <div class="form-group">
