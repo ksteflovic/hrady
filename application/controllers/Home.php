@@ -36,17 +36,16 @@ class Home extends CI_Controller
 
 
         $this->load->library("pagination");
-        
+
         $config = array();
-        $config["total_rows"] = $this->Hrady_model->getRows();
+        $config["total_rows"] = count($this->Hrady_model->getRows());
         $config["per_page"] = 5;
         $config["uri_segment"] = 3;
 
         $this->pagination->initialize($config);
 
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data["results"] = $this->Hrady_model->
-        fetch_castles($config["per_page"], $page);
+        $data["results"] = $this->Hrady_model-> fetch_castles($config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
 
         $this->load->view('template/header');
