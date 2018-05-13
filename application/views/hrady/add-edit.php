@@ -8,9 +8,9 @@
         }
         ?>
     </div>
+    <br>
     <div class="row">
         <div class="col-xs-12">
-            13 
             <div class="panel panel-default">
                 <div class="panel-heading"><?php echo $action; ?>
                     Hrady naše <a href="<?php echo site_url('hrady/'); ?>"
@@ -57,7 +57,6 @@
                         <div class="form-group">
                             <label for="title">Typ</label>
                             <div class="form-group">
-                                <label for="title">Typ</label>
                                 <select name="typ">
                                     <option value="">Select...</option>
                                     <option value="hrad">Hrad</option>

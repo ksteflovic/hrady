@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <th>Status</th>
                     <th></th>
                     <th></th>
-                    <th></th>
+                    <th><a href="<?php echo site_url('home/add')?>"><button type="button" class="btn btn-primary" >Pridať nový hrad</button></a></th>
 
                 </tr>
                 </thead>
@@ -49,13 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row">
     </div>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
+<!--
 <div class="container">
     <?php if (!empty($success_msg)) { ?>
         <div class="col-xs-12">
@@ -136,6 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 </div>
 </div>
+-->
 <br>
 <br>
 <br>

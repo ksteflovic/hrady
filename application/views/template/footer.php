@@ -3,6 +3,9 @@
 <script type="text/javascript">
     $(document).ready( function () {
         $('#CastleTable').DataTable({
+            "columnDefs": [
+            { "orderable": false, "targets": [1 , 5, 6, 7] }
+            ],
             "pageLength": 5,
             "lengthMenu": [ 3, 5, 10, 25, 50, 75, 100, "All"],
             "ajax":{
