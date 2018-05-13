@@ -1,14 +1,15 @@
-<div ><h1 id="statistika" style="margin-left: 20%;">Štatistiky</h1>
+<br>
+    <hr id="statistika" class="style5">
     <br>
     <br>
     <br>
-    <br>
+<div ><h1 style="margin-left: 2%;">Štatistiky</h1>
     <div>
         <div style="float: left; width: 50%">
-            <canvas id="myChart" width="600" height="450" style="margin-left: 20%;">
+            <canvas id="myChart" width="600" height="450" style="margin-left: 5%;">
             </canvas>
         </div>
-        <div style="float: right; width: 50%">
+        <div style="float: right; margin-right: 2%;">
             <canvas id="chartjs-1" width="600" height="450">
             </canvas>
         </div>

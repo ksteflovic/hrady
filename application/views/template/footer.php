@@ -1,8 +1,5 @@
 <br>
 <br>
-<p>Nejaky text</p>
-<p>Nejaky text</p>
-<p>Nejaky text</p>
 <br>
 <br>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

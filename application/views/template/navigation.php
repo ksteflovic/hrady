@@ -29,7 +29,7 @@ function welcome()
 </div>
 <!-- Az tu zacina navigation -->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-    <a class="navbar-brand" onclick="window.location.reload()" style="cursor: pointer">
+    <a class="navbar-brand" onclick="window.location.reload(true)" style="cursor: pointer">
         <img src="https://s31.postimg.cc/inxp945l7/hrad_logo.png" alt="logo" style="width:50px;">
     </a>
     <ul class="navbar-nav">

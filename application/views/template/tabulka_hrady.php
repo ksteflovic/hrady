@@ -7,6 +7,10 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+<br>
+<br>
+<br>
+<br>
 <hr class="style12">
 <div class='container'>
     <div class='row'>
@@ -44,9 +48,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row">
     </div>
 </div>
-<p>Nejaky text</p>
-<p>Nejaky text</p><br>
-<p>Nejaky text</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div class="container">
     <?php if (!empty($success_msg)) { ?>
@@ -120,7 +127,9 @@ glyphicon-trash" onclick="return confirm('Are you sure to delete?')"></a>
         </div>
     </div>
 </div>
-
-<p>Nejaky text</p>
-<p>Nejaky text</p><br>
-<p>Nejaky text</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="icon" href="https://s31.postimg.cc/inxp945l7/hrad_logo.png" type="image">
+    <link rel="icon" href="https://s7.postimg.cc/yw35yq5vf/hrad_logo.png" type="image">
     <!-- FONTY -->
     <link href="<?php echo base_url();?>assets/css/fonty.css" rel="stylesheet">
     <link type="text/css" href="<?php echo base_url();?>assets/css/animovany_text.css" rel="stylesheet">
