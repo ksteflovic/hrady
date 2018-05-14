@@ -43,9 +43,9 @@ function welcome()
                 Navigácia
             </a>
             <div class="dropdown-menu">
+                <a class="dropdown-item" href="#hrady">Naše hrady</a>
                 <a class="dropdown-item" href="#statistika">Štatistiky</a>
-                <a class="dropdown-item" href="#">Kontakt</a>
-                <a class="dropdown-item" href="#about">O nás</a>
+                <a class="dropdown-item" href="#about">Kontakt</a>
             </div>
         </li>
     </ul>

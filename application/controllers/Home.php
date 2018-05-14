@@ -66,7 +66,6 @@ class Home extends CI_Controller
 */
         $this->load->view('template/header');
         $this->load->view('template/navigation');
-        $this->load->view('content');
         $this->load->view('template/tabulka_hrady', $data);
         $this->load->view('hrady/chart');
         $this->load->view('template/footer');

@@ -41,73 +41,31 @@
                     </div>
                     <br>
 
-
-
-
                     <div class="container">
-                        <?php if (!empty($success_msg)) { ?>
-                            <div class="col-xs-12">
-                                <div class="alert alert-success"><?php echo $success_msg;
-                                    ?></div>
-                            </div>
-                        <?php } elseif (!empty($error_msg)) { ?>
-                            <div class="col-xs-12">
-                                <div class="alert alert-danger"><?php echo $error_msg; ?></div>
-                            </div>
-                        <?php } ?>
                         <div class="row">
-                            <h1>List of Castles</h1>
+                            <h1>Vstupné</h1>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="panel panel-default ">
-                                    <div class="panel-heading"><a href="<?php echo
-                                        site_url('home/add/'); ?>" class="glyphicon glyphicon-plus pullright"
-                                        ></a></div>
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th width="5%">#</th>
-                                            <th width="25%">Názov</th>
-                                            <th width="15%">Typ</th>
-                                            <th width="25%">Stav</th>
-                                            <th width="30%">Upravy</th>
+                                            <th width="30%">Typ</th>
+                                            <th width="20%">Suma</th>
+                                            <th width="35%">Poznámka</th>
                                         </tr>
                                         </thead>
                                         <tbody id="userData">
-                                        <?php if (!empty($hrady)): foreach ($hrady
-
-                                                                            as $hrad): ?>
+                                        <?php if (!empty($vstupne)): foreach ($vstupne as $vstup): ?>
                                             <tr>
-                                                <td><?php echo '#' . $hrad['id']; ?></td>
-                                                <td><?php echo $hrad['nazov']; ?></td>
-                                                <td><?php echo $hrad['Typ']; ?></td>
-                                                <?php
-                                                if (strpos($hrad['Stav'], 're verejnosť') !== false) {
-                                                    ?>
-                                                    <td><span class="badge badge-success"><?php echo mb_strtoupper($hrad['Stav']); ?></span></td><?php
-                                                } elseif (strpos($hrad['Stav'], 'Ruiny') !== false || strpos($hrad['Stav'], 'achoval') !== false) {
-                                                    ?>
-                                                    <td><span class="badge badge-warning"><?php echo mb_strtoupper($hrad['Stav']); ?></span></td><?php
-                                                } else {
-                                                    ?>
-                                                    <td><span <span class="badge badge-danger"><?php echo mb_strtoupper($hrad['Stav']); ?></span></td><?php
-                                                }
-                                                ?>
-                                                <td>
-                                                    <a href="<?php echo
-                                                    site_url('home/view/' . $hrad['id']); ?>" class="btn btn-outline-primary" role="button">Detaily</a>
-                                                    <a href="<?php echo
-                                                    site_url('home/edit/' . $hrad['id']); ?>" class="btn btn-outline-warning" role="button">Upraviť</a>
-                                                    <a href="<?php echo
-                                                    site_url('home/delete/' . $hrad['id']); ?>" class="btn btn-outline-danger" role="button"
-                                                       onclick="return confirm('Are you sure to delete?')">Vymazať</a>
-                                                </td>
+                                                <td><?php echo $vstup['Typ']; ?></td>
+                                                <td><?php echo $vstup['Suma']; ?></td>
+                                                <td><?php echo $vstup['Poznámka']; ?></td>
                                             </tr>
-
                                         <?php endforeach; else: ?>
                                             <tr>
-                                                <td colspan="8">Vstupenky neboli nájdené...                                                 found......
+                                                <td colspan="8">Vstupenky neboli nájdené ...
                                                 </td>
                                             </tr>
                                         <?php endif; ?>
@@ -120,56 +78,55 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <br>
 
+            <div class="col-lg-3 col-md-3"><!-- widgets column left -->
+                <ul class="list-unstyled clear-margins"><!-- widgets -->
 
+                    <li class="widget-container widget_nav_menu"><!-- widgets list -->
 
-
-
-                    <div class="col-lg-3 col-md-3"><!-- widgets column left -->
-                        <ul class="list-unstyled clear-margins"><!-- widgets -->
-
-                            <li class="widget-container widget_nav_menu"><!-- widgets list -->
-
-                                <h1 class="title-widget">Poloha hradu</h1>
-                                <ul>
-                                    <li></li>
-                                </ul>
-                                <strong>Adresa: </strong>
-                                <p>
-                                    <?php echo !empty($hrady['Adresa']) ? $hrady['Adresa'] : ''; ?>, <br><?php echo
-                                    !empty($hrady['psc']) ? $hrady['psc'] : ''; ?> <?php echo !empty($hrady['mesto']) ? $hrady['mesto'] : ''; ?>
-                                </p>
-                                    <div id="map"></div>
-                            </li>
+                        <h1 class="title-widget">Poloha hradu</h1>
+                        <ul>
+                            <li></li>
                         </ul>
-                        <script>
-                                function initMap() {
-                                    var hrad = {
-                                        lat: <?php echo
-                                        $gps_lat;?>, lng: <?php echo
-                                        $gps_long; ?>};
-                                    var map = new google.maps.Map(document.getElementById('map'), {
-                                        zoom: 17,
-                                        center: hrad
-                                    });
-                                    var marker = new google.maps.Marker({
-                                        position: hrad,
-                                        map: map
-                                    });
-                                }
-                        </script>
-                        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwSnSssRpMOoIivHqn8EVpZK-y6bnseWg&callback=initMap"
-                                type="text/javascript"></script>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                    </div><!-- widgets column left end -->
-                </div>
-
-            </div>
+                        <strong>Adresa: </strong>
+                        <p>
+                            <?php echo !empty($hrady['Adresa']) ? $hrady['Adresa'] : ''; ?>, <br><?php echo
+                            !empty($hrady['psc']) ? $hrady['psc'] : ''; ?> <?php echo !empty($hrady['mesto']) ? $hrady['mesto'] : ''; ?>
+                        </p>
+                        <div id="map"></div>
+                    </li>
+                </ul>
+                <script>
+                    function initMap() {
+                        var hrad = {
+                            lat: <?php echo
+                            $gps_lat;?>, lng: <?php echo
+                            $gps_long; ?>};
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 17,
+                            center: hrad
+                        });
+                        var marker = new google.maps.Marker({
+                            position: hrad,
+                            map: map
+                        });
+                    }
+                </script>
+                <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwSnSssRpMOoIivHqn8EVpZK-y6bnseWg&callback=initMap"
+                        type="text/javascript"></script>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div><!-- widgets column left end -->
         </div>
+
+    </div>
+    </div>
     </div>
 <?php endforeach; ?>
 <br>

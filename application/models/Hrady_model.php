@@ -33,7 +33,7 @@ class Hrady_model extends CI_Model
     function dajVstupne($id){
         $this->db->select('*')
             ->from('vstupne')
-            ->where('id_Hrady_a_zamky', $id);
+            ->where('idHrady_a_zamky', $id);
 
         $query = $this->db->get();
         return $query->result_array();

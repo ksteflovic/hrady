@@ -38,7 +38,7 @@
                     borderColor: "#000000",
                     datasets: [
                         {
-                            label: 'Návštevnosť počas posledých siedmych dní',
+                            label: 'Návštevnosť stránky počas posledých siedmych dní',
                             fill: true,
                             borderColor: "rgb(255, 255, 255)",
                             backgroundColor: "rgb(75, 192, 210)",
@@ -88,7 +88,7 @@
                     borderColor: "#000000",
                     datasets: [
                         {
-                            label: 'Návštevnosť počas hodín',
+                            label: 'Návštevnosť stránky počas hodín',
                             fill: false,
                             backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)","rgba(46, 73, 254,0.2)","rgba(46, 251, 53,0.2)","rgba(254, 2, 0,0.2)","rgba(254, 24, 202,0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 20, 0.2)","rgba(99, 187, 33, 0.2)","rgba(200, 3, 45, 0.2)","rgba(149, 105, 20, 0.2)","rgba(92, 84, 108, 0.2)","rgba(240, 68, 33, 0.2)","rgba(23, 140, 77, 0.2)","rgba(208, 14, 99, 0.2)","rgba(170, 40, 85, 0.2)","rgba(13, 85, 96, 0.2)","rgba(46, 23, 177, 0.2)","rgba(230, 122, 93, 0.2)","rgba(255, 159, 64,0.2)","rgba(46, 73, 254,0.2)"],
                             borderColor: ["rgb(255, 99, 132)", "rgb(255, 159, 64)","rgb(46, 73, 254)","rgb(46, 251, 53)","rgb(254, 2, 0)","rgb(254, 24, 202)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 20)","rgba(99, 187, 33)","rgba(200, 3, 45)","rgba(149, 105, 20)","rgba(92, 84, 108)","rgba(240, 68, 33)","rgba(23, 140, 77)","rgba(208, 14, 99)","rgba(170, 40, 85)","rgba(13, 85, 96)","rgba(46, 23, 177)","rgba(230, 122, 93)", "rgb(255, 159, 64)","rgb(46, 73, 254)"],
