@@ -127,6 +127,7 @@ class Home extends CI_Controller
         $data = array();
         if (!empty($id)) {
             $data['hradky'] = $this->Hrady_model->dajVsetkoOHrade($id);
+            $data['vstupne'] = $this->Hrady_model->dajVstupne($id);
             $data['action'] = 'Detail hradu';
             //$data['title'] = $data['temperatures']['measurement_date'];
             //nahratie detailu zaznamu

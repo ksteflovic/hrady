@@ -30,6 +30,15 @@ class Hrady_model extends CI_Model
         return $query->result_array();
     }
 
+    function dajVstupne($id){
+        $this->db->select('*')
+            ->from('vstupne')
+            ->where('id_Hrady_a_zamky', $id);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     function dajVsetkoOHrade($id)
     {
         $this->db->select('hrady.nazov, hrady.Stav, hrady.Typ, hrady.picture, historia.vznik, historia.Text_historie, hrady.Adresa, mesto.nazov AS mesto, mesto.psc AS psc, hrady.gps_lat, hrady.gps_long, hrady.email, hrady.telefon, hrady.webstranka')
