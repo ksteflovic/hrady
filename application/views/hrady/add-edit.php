@@ -14,20 +14,22 @@
         ?>
     </div>
     <br>
-    <div class="row">
-        <div class="col-xs-12">
+    <div class="row" style="float: none;
+    margin: 0 auto;">
+        <div class="col-xs-12" style="float: none;
+    margin: 0 auto;">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <form method="post" action="" class="form">
                         <div class="form-group">
-                            <label for="title">Name</label>
+                            <label for="title">Názov</label>
                             <input type="text" class="form-control"
                                    name="Názov" placeholder="Sem vložte názov hradu" value="<?php echo
                             !empty($post['nazov']) ? $post['nazov'] : ''; ?>">
                             <?php echo form_error('nazov', '<p class="help-block text-danger">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="title">State</label>
+                            <label for="title">Stav</label>
                             <select name="stav" id="title" class="form-control">
                                 <option value="">Vyberte súčasný stav hradu...</option>
                                 <?php foreach ($stavy as $stav):

@@ -86,11 +86,14 @@
 
                     <li class="widget-container widget_nav_menu"><!-- widgets list -->
 
-                        <h1 class="title-widget">Poloha hradu</h1>
+                        <h1 class="title-widget">Informácie</h1>
                         <ul>
                             <li></li>
                         </ul>
-                        <strong>Adresa: </strong>
+                        <p><strong>🌐 Webstránka:</strong><br> <?php echo !empty($hrady['webstranka']) ? $hrady['webstranka'] : 'Nie je'; ?></p>
+                        <p><strong>📱 Telefón:</strong><br> <?php echo !empty($hrady['telefon']) ? $hrady['telefon'] : 'Nie je'; ?></p>
+                        <p><strong>📧 Email:</strong><br> <?php echo !empty($hrady['email']) ? $hrady['email'] : 'Nie je'; ?></p>
+                        <strong>📮 Adresa: </strong>
                         <p>
                             <?php echo !empty($hrady['Adresa']) ? $hrady['Adresa'] : ''; ?>, <br><?php echo
                             !empty($hrady['psc']) ? $hrady['psc'] : ''; ?> <?php echo !empty($hrady['mesto']) ? $hrady['mesto'] : ''; ?>
@@ -222,7 +225,15 @@
             <br>
             <br>
             <br>
-            <div class="container">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="container" style="background: white;">
                 <h2>Hodnotenie hradu</h2>
                 <p>Sem prispejete dobrým ohodnotením</p>
                 <form method="post" action="<?php echo base_url();?>index.php/home/ohodnot" class="form" id="myform">
