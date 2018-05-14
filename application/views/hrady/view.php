@@ -1,5 +1,5 @@
 <div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+    <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
 </div>
 <div class="panel-heading" style="margin: 10px; position: fixed;">
     <a href="<?php echo site_url(''); ?>" ><i class="fas fa-chevron-circle-left fa-5x"></i></a>
@@ -14,26 +14,26 @@
                 <div style="width: 500px; height: 400px; float: left; ">
                     <img src="<?php echo !empty($hrady['picture']) ? $hrady['picture'] : '' ?>" style=" border-radius: 8px;max-width: 100%; max-height: 100%; ">
                 </div>
-                <h1 id="nadpis_na_stranke" style="float: right; margin-left: 20px;"><?php echo
+                <h1 id="nadpis_na_stranke" style="margin-left: 20px;"><?php echo
                         !empty($hrady['nazov']) ? $hrady['nazov'] : '' ; ?></h1>
                 <div class="form-group" style="margin-left: 30px;">
-                    <label>Typ:</label>
-                    <?php echo !empty($hrady['Typ'])?$hrady['Typ']:''; ?>
+                    <label><strong>Typ:</strong></label>
+                    <p><?php echo !empty($hrady['Typ'])?$hrady['Typ']:''; ?></p>
                 </div>
                 <div class="form-group" style="margin-left: 30px;">
-                    <label>Stav:</label>
+                    <label><strong>Stav:</strong></label>
                     <p><?php echo
                         !empty($hrady['Stav'])?$hrady['Stav']:''; ?></p>
                 </div>
                 <div class="form-group">
-                    <label>User:</label>
+                    <label><strong>Vznik:</strong></label>
                     <p><?php echo
-                        !empty($temperatures['user'])?$temperatures['user']:''; ?></p>
+                        !empty($hrady['vznik'])?$hrady['vznik']:''; ?></p>
                 </div>
                 <div class="form-group">
-                    <label>Description:</label>
-                    <p><?php echo
-                        !empty($temperatures['description'])?$temperatures['description']:'';
+                    <label><strong>História:</strong></label>
+                    <p style="text-align: justify;"><?php echo
+                        !empty($hrady['Text_historie'])?$hrady['Text_historie']:'';
                         ?></p>
                 </div>
                 <br>
@@ -47,7 +47,10 @@
                         <li class="widget-container widget_nav_menu"><!-- widgets list -->
 
                             <h1 class="title-widget">Poloha hradu</h1>
-
+                            <strong>Adresa: </strong><p>
+                                <?php echo !empty($hrady['Adresa'])?$hrady['Adresa']:''; ?>, <?php echo
+                                !empty($hrady['psc'])?$hrady['psc']:''; ?> <?php echo !empty($hrady['mesto'])?$hrady['mesto']:''; ?>
+                            </p>
                             <ul>
                                 <li></li>
                                 <div id="map"></div>
@@ -81,7 +84,7 @@
 </div>
 <?php endforeach; ?>
 <br>
-<div class="footer-bottom" style="position:absolute;
+<div class="footer-bottom" style="position:fixed;
    bottom:0;">
 
     <div class="container" style="height:100%;">

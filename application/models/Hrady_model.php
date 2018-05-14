@@ -13,9 +13,18 @@ class Hrady_model extends CI_Model
         return $this->db->get("hrady");
     }
 
+    function dajVsetkyStavyHradov(){
+        $this->db->distinct();
+        $this->db->select('Stav')
+            ->from('hrady');
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     function dajVsetkoOHrade($id)
     {
-        $this->db->select('hrady.nazov, hrady.picture, historia.vznik, historia.Text_historie, hrady.Adresa, mesto.nazov, hrady.gps_lat, hrady.gps_long, hrady.email, hrady.telefon, hrady.webstranka')
+        $this->db->select('hrady.nazov, hrady.Stav, hrady.Typ, hrady.picture, historia.vznik, historia.Text_historie, hrady.Adresa, mesto.nazov AS mesto, mesto.psc AS psc, hrady.gps_lat, hrady.gps_long, hrady.email, hrady.telefon, hrady.webstranka')
             ->from('hrady')
             ->join('historia', 'hrady.idHistoria = historia.id')
             ->join('mesto', 'hrady.idMesto = mesto.id')

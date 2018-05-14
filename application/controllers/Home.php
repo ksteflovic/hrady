@@ -175,6 +175,7 @@ class Home extends CI_Controller
             }
         }
         $data['post'] = $postData;
+        $data['stavy'] = $this->Hrady_model->dajVsetkyStavyHradov();
         // $data['title'] = 'Create Temperature';
         $data['action'] = 'Pridanie nového hradu do databázy';
         //zobrazenie formulara pre vlozenie a editaciu dat

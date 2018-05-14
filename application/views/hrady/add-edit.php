@@ -1,5 +1,6 @@
 <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+    <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar"
+         aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
 </div>
 <div class="container">
     <div class="col-xs-12">
@@ -15,7 +16,8 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><a href="<?php echo site_url('hrady/'); ?>" ><i class="fas fa-angle-double-left" fa-5x"></i></a></div>
+                <div class="panel-heading"><a href="<?php echo site_url('hrady/'); ?>"><i
+                                class="fas fa-angle-double-left" fa-5x"></></a></div>
                 <div class="panel-body">
                     <form method="post" action="" class="form">
                         <div class="form-group">
@@ -27,34 +29,14 @@
                         </div>
                         <div class="form-group">
                             <label for="title">Stav</label>
-                            <select name="stav">
+                            <select name="stav" class="form-control">
                                 <option value="">Select...</option>
-                                <option value="preverejnost">Pre verejnosť</option>
-                                <option value="docasnenepistupny">Dočasne neprístupný</option>
-                                <option value="ruiny">Ruiny</option>
-                                <option value="docasnenepistupny"></option>
-                                <option value="docasnenepistupny">Neprístupný</option>
+                                <?php foreach ($stavy as $stav):
+                                    echo "<option value='" . str_replace(" ", "_", $stav['Stav']) . "'>" . $stav['Stav'] . "</option>";
+
+                                endforeach; ?>
                             </select>
                         </div>
-                        <?php
-                        function populatedropdown()
-                        {
-                            $query = $this->db->query('SELECT * FROM '.$this->table_name.' WHERE active=1 ORDER BY brand');
-
-                            if ($query->num_rows() > 0) {
-                                $dropdowns = $query->result();
-
-                                $dropDownList[''] = 'Please Select';    // default selection item
-                                foreach($dropdowns as $dropdown) {
-                                    $dropDownList[$dropdown->brand] = $dropdown->brand;
-                                }
-
-                                return $dropDownList;
-                            } else {
-                                return false;       // return false if no items for dropdown
-                            }
-                        }
-                        ?>
                         <div class="form-group">
                             <label for="title">Typ</label>
                             <div class="form-group">
@@ -78,22 +60,22 @@
                         <div class="form-group">
                             <label for="content">E-mail</label>
                             <input type="email" name="email" class="formcontrol"
-                                      placeholder="Zadajte e-mail" value="<?php echo
-                                !empty($post['email']) ? $post['email'] : ''; ?>">
+                                   placeholder="Zadajte e-mail" value="<?php echo
+                            !empty($post['email']) ? $post['email'] : ''; ?>">
                             <?php echo form_error('email', '<p class="text-danger">', '</p>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="content">Telefónne číslo</label>
                             <input type="number" name="telefon" class="formcontrol"
-                                      placeholder="Zadajte telefónne číslo" value="<?php echo
-                                !empty($post['telefon']) ? $post['telefon'] : ''; ?>">
+                                   placeholder="Zadajte telefónne číslo" value="<?php echo
+                            !empty($post['telefon']) ? $post['telefon'] : ''; ?>">
                             <?php echo form_error('telefon', '<p class="text-danger">', '</p>'); ?>
                         </div>
                         <div class="form-group">
                             <label for="content">Webstránka</label>
                             <input type="text" name="webstranka" class="formcontrol"
-                                      placeholder="Zadajte webovú lokalitu" value="<?php echo
-                                !empty($post['webstranka']) ? $post['webstranka'] : ''; ?>">
+                                   placeholder="Zadajte webovú lokalitu" value="<?php echo
+                            !empty($post['webstranka']) ? $post['webstranka'] : ''; ?>">
                             <?php echo form_error('webstranka', '<p class="text-danger">', '</p>'); ?>
                         </div>
                         <input type="submit" name="postSubmit" class="btn btn-primary" value="Submit"/>
