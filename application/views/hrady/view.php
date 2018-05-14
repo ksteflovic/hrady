@@ -136,7 +136,7 @@
                         <input type="text" placeholder="Vaše meno" class="form-control" id="meno">
                     </div>
                     <div class="form-group">
-                        <label for="hodnotenie">Hodnotenie:</label>
+                        <label for="input-2">Hodnotenie:</label>
                         <input id="input-2" name="input-2" value="2.5" class="rating-loading">
                         <script>
                             $(document).on('ready', function(){
