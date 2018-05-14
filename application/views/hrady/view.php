@@ -19,12 +19,13 @@
                     </div>
                     <h1 id="nadpis_na_stranke" style="margin-left: 20px;"><?php echo
                         !empty($hrady['nazov']) ? $hrady['nazov'] : ''; ?></h1>
-                    <span class="heading">Hodnotenie používateľov</span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <br>
+                    <span class="heading">Hodnotenie používateľov: </span>
+                    <span class="fas fa-star checked"></span>
+                    <span class="fas fa-star checked"></span>
+                    <span class="fas fa-star checked"></span>
+                    <span class="fas fa-star checked"></span>
+                    <span class="far fa-star"></span>
+                    <p style="font-size: 10px;">Priemer 4.1 podľa 254 hodnotení.</p>
                     <div class="form-group" style="margin-left: 30px;">
                         <label><strong>Typ:</strong></label>
                         <p><?php echo !empty($hrady['Typ']) ? $hrady['Typ'] : ''; ?></p>
@@ -127,22 +128,41 @@
             </div><!-- widgets column left end -->
             <br>
             <div class="container">
-                <h2>Hodnotenie a návšteva hradu</h2>
-                <p>The form below contains two input elements; one of type text and one of type password:</p>
-                <form>
+                <h2>Hodnotenie hradu</h2>
+                <p>Sem prispejete dobrým ohodnotením</p>
+                <form method="post" action="" class="form">
                     <div class="form-group">
-                        <label for="usr">Meno:</label>
-                        <input type="text" class="form-control" id="usr">
+                        <label for="meno"><strong>Meno:</strong></label>
+                        <input type="text" placeholder="Vaše meno" class="form-control" id="meno">
                     </div>
                     <div class="form-group">
-                        <label for="usr">Hodnotenie:</label>
-                        <input type="text" class="form-control" id="usr">
+                        <label for="hodnotenie">Hodnotenie:</label>
+                        <input id="input-2" name="input-2" value="2.5" class="rating-loading">
+                        <script>
+                            $(document).on('ready', function(){
+                                $('#input-2').rating({
+                                    step: 1,
+                                    starCaptions: {1: 'Veľmi slabé', 2: 'Slabé', 3: 'Ok', 4: 'Dobré', 5: 'Vynikajúce'},
+                                    starCaptionClasses: {1: 'text-danger', 2: 'text-warning', 3: 'text-info', 4: 'text-primary', 5: 'text-success'}
+                                });
+                            });
+                        </script>
                     </div>
-                    <div class="form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd">
+                    <label for="usr">Pohlavie:</label>
+                    <div class="radio">
+                        <label><input type="radio" name="muz">Muž </label><br>
+                        <label><input type="radio" name="zena">Žena </label><br>
+                        <label><input type="radio" name="neuvedene">Nechcem uvádzať </label><br>
                     </div>
+                    <br>
+                    <input type="submit" name="postSubmit" class="btn btn-primary" value="Potvrdiť"/>
                 </form>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
             </div>
         </div>
 

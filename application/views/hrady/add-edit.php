@@ -74,7 +74,6 @@
                             !empty($post['webstranka']) ? $post['webstranka'] : ''; ?>">
                             <?php echo form_error('webstranka', '<p class="text-danger">', '</p>'); ?>
                         </div>
-                        <input type="submit" name="postSubmit" class="btn btn-secondary" value="Cancel"/>
                         <input type="submit" name="postSubmit" class="btn btn-primary" value="Submit"/>
                     </form>
                 </div>
