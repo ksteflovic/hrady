@@ -13,12 +13,18 @@
             <div class="panel panel-default">
                 <br>
                 <div class="panel-body">
-                    <div style="width: 400px; height: 400px; float: left; ">
+                    <div style="width: 400px; height: 400px; float: left; margin:30px;">
                         <img src="<?php echo !empty($hrady['picture']) ? $hrady['picture'] : '' ?>"
                              style="float: left; border-radius: 8px; max-width: 100%; max-height: 100%; ">
                     </div>
                     <h1 id="nadpis_na_stranke" style="margin-left: 20px;"><?php echo
                         !empty($hrady['nazov']) ? $hrady['nazov'] : ''; ?></h1>
+                    <span class="heading">Hodnotenie používateľov</span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <br>
                     <div class="form-group" style="margin-left: 30px;">
                         <label><strong>Typ:</strong></label>
                         <p><?php echo !empty($hrady['Typ']) ? $hrady['Typ'] : ''; ?></p>
@@ -48,19 +54,19 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="panel panel-default ">
-                                    <table class="table table-striped">
+                                    <table class="table table-striped" style="width: 1000px; align: center;">
                                         <thead>
                                         <tr>
                                             <th width="30%">Typ</th>
                                             <th width="20%">Suma</th>
-                                            <th width="35%">Poznámka</th>
+                                            <th width="50%">Poznámka</th>
                                         </tr>
                                         </thead>
                                         <tbody id="userData">
                                         <?php if (!empty($vstupne)): foreach ($vstupne as $vstup): ?>
                                             <tr>
                                                 <td><?php echo $vstup['Typ']; ?></td>
-                                                <td><?php echo $vstup['Suma']; ?></td>
+                                                <td><?php echo $vstup['Suma']; ?> €</td>
                                                 <td><?php echo $vstup['Poznámka']; ?></td>
                                             </tr>
                                         <?php endforeach; else: ?>
@@ -108,10 +114,6 @@
                             zoom: 17,
                             center: hrad
                         });
-                        var marker = new google.maps.Marker({
-                            position: hrad,
-                            map: map
-                        });
                     }
                 </script>
                 <script async defer
@@ -123,6 +125,25 @@
                 <br>
                 <br>
             </div><!-- widgets column left end -->
+            <br>
+            <div class="container">
+                <h2>Hodnotenie a návšteva hradu</h2>
+                <p>The form below contains two input elements; one of type text and one of type password:</p>
+                <form>
+                    <div class="form-group">
+                        <label for="usr">Meno:</label>
+                        <input type="text" class="form-control" id="usr">
+                    </div>
+                    <div class="form-group">
+                        <label for="usr">Hodnotenie:</label>
+                        <input type="text" class="form-control" id="usr">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd">
+                    </div>
+                </form>
+            </div>
         </div>
 
     </div>
