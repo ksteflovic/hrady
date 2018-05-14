@@ -126,14 +126,13 @@ class Home extends CI_Controller
     {
         $data = array();
         if (!empty($id)) {
-            $data['hrady'] = $this->Hrady_model->getRows($id);
+            $data['hradky'] = $this->Hrady_model->dajVsetkoOHrade($id);
             $data['action'] = 'Detail hradu';
             //$data['title'] = $data['temperatures']['measurement_date'];
             //nahratie detailu zaznamu
             $this->load->view('template/header', $data);
             $this->load->view('template/navigateAEV', $data);
             $this->load->view('hrady/view', $data);
-            $this->load->view('template/footer');
         } else {
             redirect('/home');
         }
@@ -182,7 +181,6 @@ class Home extends CI_Controller
         $this->load->view('template/header', $data);
         $this->load->view('template/navigateAEV', $data);
         $this->load->view('hrady/add-edit', $data);
-        $this->load->view('template/footer');
     }
 
     // aktualizacia dat
@@ -230,7 +228,6 @@ again.';
         $this->load->view('template/header', $data);
         $this->load->view('template/navigateAEV', $data);
         $this->load->view('hrady/add-edit', $data);
-        $this->load->view('template/footer');
     }
 
     // odstranenie dat

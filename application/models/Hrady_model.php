@@ -13,6 +13,18 @@ class Hrady_model extends CI_Model
         return $this->db->get("hrady");
     }
 
+    function dajVsetkoOHrade($id)
+    {
+        $this->db->select('hrady.nazov, hrady.picture, historia.vznik, historia.Text_historie, hrady.Adresa, mesto.nazov, hrady.gps_lat, hrady.gps_long, hrady.email, hrady.telefon, hrady.webstranka')
+            ->from('hrady')
+            ->join('historia', 'hrady.idHistoria = historia.id')
+            ->join('mesto', 'hrady.idMesto = mesto.id')
+            ->where('hrady.id', $id);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     function getRows($id = "")
     {
         if (!empty($id)) {
@@ -24,7 +36,8 @@ class Hrady_model extends CI_Model
         }
     }
 
-    public function fetch_castles($limit, $start) {
+    public function fetch_castles($limit, $start)
+    {
         $this->db->limit($limit, $start);
         $query = $this->db->get("hrady");
 
@@ -61,8 +74,9 @@ class Hrady_model extends CI_Model
     }
 
     // odstranenie zaznamu
-    public function delete($id){
-        $delete = $this->db->delete('hrady',array('id'=>$id));
-        return $delete?true:false;
+    public function delete($id)
+    {
+        $delete = $this->db->delete('hrady', array('id' => $id));
+        return $delete ? true : false;
     }
 }

@@ -20,7 +20,6 @@
 
     <link href="<?php echo base_url();?>assets/css/datatables.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/css/datatables.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/js/lazyload.js" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
