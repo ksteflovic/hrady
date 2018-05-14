@@ -121,6 +121,12 @@ class Home extends CI_Controller
         exit();
     }
 
+    function ohodnot(){
+        $this->load->model('Hrady_model');
+        $this->Hrady_model->insertHodnotenie();
+        redirect('/home');
+        echo "<script type='text/javascript'>alert('Ďakujeme za hodnotenie!');</script>";
+    }
     public function view($id)
     {
         $data = array();
@@ -149,9 +155,9 @@ class Home extends CI_Controller
             $this->form_validation->set_rules('Stav', 'Stav', 'required');
             $this->form_validation->set_rules('Typ', 'type', 'required');
             $this->form_validation->set_rules('Adresa', 'Adresa', 'required');
-            $this->form_validation->set_rules('email', 'email', 'optional');
-            $this->form_validation->set_rules('telefon', 'phone', 'optional');
-            $this->form_validation->set_rules('webstranka', 'web page', 'optional');
+            $this->form_validation->set_rules('email', 'email', 'required');
+            $this->form_validation->set_rules('telefon', 'phone', 'required');
+            $this->form_validation->set_rules('webstranka', 'web page', 'required');
             //priprava dat pre vlozenie
             $postData = array(
                 'nazov' => $this->input->post('nazov'),
@@ -295,6 +301,35 @@ again.';
         }
 
         $query = sprintf("SELECT DISTINCT HOUR(date) AS Cas, COUNT(date) AS Pocet FROM navstevnost GROUP BY Cas");
+
+        $result = $mysqli->query($query);
+
+        $data = array();
+        foreach ($result as $row) {
+            $data[] = $row;
+        }
+
+        $result->close();
+        $mysqli->close();
+
+        echo json_encode($data);
+    }
+
+    function navstevnostHrady(){
+        header("Access-Control-Allow-Origin: *");
+
+        define('DB_HOST', 'localhost');
+        define('DB_USERNAME', 'root');
+        define('DB_PASSWORD', '');
+        define('DB_NAME', 'hrady_a_zamky');
+
+        $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+        if (!$mysqli) {
+            die("Connection failed: " . $mysqli->error);
+        }
+
+        $query = sprintf("SELECT hodnotenie, COUNT(*) AS pocet FROM rating WHERE idHrad = 1 GROUP BY hodnotenie");
 
         $result = $mysqli->query($query);
 

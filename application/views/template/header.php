@@ -10,8 +10,6 @@
     <link href="<?php echo base_url();?>assets/css/fonty.css" rel="stylesheet">
     <link type="text/css" href="<?php echo base_url();?>assets/css/animovany_text.css" rel="stylesheet">
     <link type="text/css" href="<?php echo base_url();?>assets/css/footer.css" rel="stylesheet">
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
@@ -21,19 +19,11 @@
     <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/css/datatables.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/css/datatables.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/css/star-rating.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/css/star-rating.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/vendor/bootstrap-combobox/css/bootstrap-combobox.css">
 
-    <script type="text/javascript" src="/bower_components/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
-    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
 
 
     <style type="text/css">
@@ -57,10 +47,14 @@
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+
     <!-- SCRIPTY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url();?>assets/js/star-rating.js"></script>
-    <script type="text/javascript" src="<?php echo base_url();?>assets/js/star-rating.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/moment.js"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

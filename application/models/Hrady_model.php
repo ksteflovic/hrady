@@ -39,6 +39,15 @@ class Hrady_model extends CI_Model
         return $query->result_array();
     }
 
+    function insertHodnotenie(){
+        $f1 = $_POST['meno'];
+        $f5 = $_POST['idHrad'];
+        $f2 = $_POST['rating'];
+        $f3 = $_POST['pohlavie'];
+        $f4 = date("Y-m-d H:i:s");
+        $this->db->query("INSERT INTO rating(meno, idHrad, hodnotenie, pohlavie, datum_a_cas) VALUES('$f1','$f5','$f2','$f3','$f4')");
+    }
+
     function dajVsetkoOHrade($id)
     {
         $this->db->select('hrady.nazov, hrady.Stav, hrady.Typ, hrady.picture, historia.vznik, historia.Text_historie, hrady.Adresa, mesto.nazov AS mesto, mesto.psc AS psc, hrady.gps_lat, hrady.gps_long, hrady.email, hrady.telefon, hrady.webstranka')

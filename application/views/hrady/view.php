@@ -19,13 +19,6 @@
                     </div>
                     <h1 id="nadpis_na_stranke" style="margin-left: 20px;"><?php echo
                         !empty($hrady['nazov']) ? $hrady['nazov'] : ''; ?></h1>
-                    <span class="heading">Hodnotenie používateľov: </span>
-                    <span class="fas fa-star checked"></span>
-                    <span class="fas fa-star checked"></span>
-                    <span class="fas fa-star checked"></span>
-                    <span class="fas fa-star checked"></span>
-                    <span class="far fa-star"></span>
-                    <p style="font-size: 10px;">Priemer 4.1 podľa 254 hodnotení.</p>
                     <div class="form-group" style="margin-left: 30px;">
                         <label><strong>Typ:</strong></label>
                         <p><?php echo !empty($hrady['Typ']) ? $hrady['Typ'] : ''; ?></p>
@@ -88,7 +81,7 @@
             <br>
             <br>
 
-            <div class="col-lg-3 col-md-3"><!-- widgets column left -->
+            <div class="col-lg-3 col-md-3" style="float: left; position: relative;"><!-- widgets column left -->
                 <ul class="list-unstyled clear-margins"><!-- widgets -->
 
                     <li class="widget-container widget_nav_menu"><!-- widgets list -->
@@ -126,36 +119,145 @@
                 <br>
                 <br>
             </div><!-- widgets column left end -->
+
+
+
+            <div style="float: right; position: relative;">
+                <canvas id="myChart" width="600" height="450" style="margin-left: 5%;">
+                </canvas>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $.ajax({
+                        url: "<?php echo site_url("home/navstevnostHrady") ?>",
+                        dataType: "json",
+                        method: "GET",
+                        success: function (Jdata) {
+                            var data = Jdata;
+                            var hodnotenie = [];
+                            var pocet = [];
+
+                            for (var i in data) {
+                                hodnotenie.push(data[i].hodnotenie+". hodnotenie");
+                                pocet.push(data[i].pocet);
+                            }
+
+                            var chartdata = {
+                                labels: hodnotenie,
+                                borderColor: "#000000",
+                                datasets: [
+                                    {
+                                        label: 'Hodnotenie návštevníkov hradu',
+                                        data: pocet,
+                                        backgroundColor: ["rgb(255, 0,0)", "rgb(255, 97, 0)", "rgb(204, 200, 0)","rgb(184, 233, 0)","rgb(73, 237, 158)"]
+                                    }
+                                ]
+                            };
+
+                            var ctx = $("#myChart");
+
+                            var barGraph = new Chart(ctx, {
+                                type: 'doughnut',
+                                data: chartdata,
+                                options: {
+                                    responsive: false,
+                                    chartArea: {
+                                        backgroundColor: 'rgba(0, 0, 0)'
+
+                                    }
+                                }
+                            });
+                        },
+                        error: function (data) {
+                            console.log(data);
+                        }
+                    });
+                });
+
+/*
+                var ctx2 = document.getElementById("myChart").getContext('2d');
+                var myChart2 = new Chart(ctx2, {
+                    type: 'pie',
+                    data: {
+                        labels: ["Red", "Blue", "Yellow"],
+                        datasets: [{
+                            label: "Hodnotenie",
+                            data: [300, 50, 100],
+                            backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                        }]
+                    },
+                    options: {
+                        responsive: false
+                    }
+                });
+
+                */
+            </script>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <br>
             <div class="container">
                 <h2>Hodnotenie hradu</h2>
                 <p>Sem prispejete dobrým ohodnotením</p>
-                <form method="post" action="" class="form">
+                <form method="post" action="<?php echo base_url();?>index.php/home/ohodnot" class="form" id="myform">
                     <div class="form-group">
+                        <?php
+                        $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                        if(preg_match("/\/(\d+)$/",$url,$matches))
+                        {
+                            $end=$matches[1];
+                        }
+                        ?>
+                        <input type="hidden" name="idHrad" value="<?php echo $end; ?>">
                         <label for="meno"><strong>Meno:</strong></label>
-                        <input type="text" placeholder="Vaše meno" class="form-control" id="meno">
+                        <input type="text" placeholder="Vaše meno" class="form-control" id="meno" name="meno" required="">
                     </div>
                     <div class="form-group">
-                        <label for="input-2">Hodnotenie:</label>
-                        <input id="input-2" name="input-2" value="2.5" class="rating-loading">
-                        <script>
-                            $(document).on('ready', function(){
-                                $('#input-2').rating({
-                                    step: 1,
-                                    starCaptions: {1: 'Veľmi slabé', 2: 'Slabé', 3: 'Ok', 4: 'Dobré', 5: 'Vynikajúce'},
-                                    starCaptionClasses: {1: 'text-danger', 2: 'text-warning', 3: 'text-info', 4: 'text-primary', 5: 'text-success'}
-                                });
-                            });
-                        </script>
-                    </div>
-                    <label for="usr">Pohlavie:</label>
-                    <div class="radio">
-                        <label><input type="radio" name="muz">Muž </label><br>
-                        <label><input type="radio" name="zena">Žena </label><br>
-                        <label><input type="radio" name="neuvedene">Nechcem uvádzať </label><br>
+                        <label for="input-2"><strong>Hodnotenie:</strong></label><br>
+                            <div class="starrating risingstar d-flex flex-row-reverse" style="float: left;">
+                                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Vynikajúce">5</label>
+                                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Veľmi dobré">4</label>
+                                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Dobré">3</label>
+                                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Ok">2</label>
+                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Veľmi slabé">1</label>
+                            </div>
                     </div>
                     <br>
-                    <input type="submit" name="postSubmit" class="btn btn-primary" value="Potvrdiť"/>
+                    <br>
+                    <label for="radio"><strong>Pohlavie:</strong></label>
+                    <div class="radio">
+                        <label><input type="radio" name="pohlavie" value="muz"> Muž </label><br>
+                        <label><input type="radio" name="pohlavie" value="zena"> Žena </label><br>
+                        <label><input type="radio" name="pohlavie" value="neuvedene"> Nechcem uvádzať </label><br>
+                    </div>
+                    <br>
+                    <input id="potvrdit" type="submit" name="postSubmit" class="btn btn-primary" value="Potvrdiť"/>
                 </form>
                 <br>
                 <br>
