@@ -3,7 +3,7 @@
          aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
 </div>
 <div class="panel-heading" style="margin: 10px; position: fixed;"><a href="<?php echo site_url(''); ?>"><i class="fas fa-angle-double-left fa-5x"></i></a></div>
-<div class="container">
+<div class="container" style="">
     <div class="col-xs-12">
         <?php
         if (!empty($success_msg)) {
@@ -14,20 +14,20 @@
         ?>
     </div>
     <br>
-    <div class="row" style="text-align: center;">
+    <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <form method="post" action="" class="form">
                         <div class="form-group">
-                            <label for="title">Názov</label>
+                            <label for="title">Name</label>
                             <input type="text" class="form-control"
                                    name="Názov" placeholder="Sem vložte názov hradu" value="<?php echo
                             !empty($post['nazov']) ? $post['nazov'] : ''; ?>">
                             <?php echo form_error('nazov', '<p class="help-block text-danger">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="title">Stav</label>
+                            <label for="title">State</label>
                             <select name="stav" id="title" class="form-control">
                                 <option value="">Vyberte súčasný stav hradu...</option>
                                 <?php foreach ($stavy as $stav):
@@ -37,7 +37,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="title">Typ</label>
+                            <label for="title">Type</label>
                                 <select name="typ" id="title" class="form-control">
                                     <option value="">Vyberte typ hradu...</option>
                                     <?php foreach ($typy as $typ):
@@ -47,7 +47,7 @@
                                 </select>
                         </div>
                         <div class="form-group">
-                            <label for="title">Ulica a popisné číslo</label>
+                            <label for="title">Adress</label>
                             <input type="text" class="form-control"
                                    name="adresa" placeholder="Zadajte ulicu a popisné číslo" value="<?php echo
                             !empty($post['adresa']) ? $post['adresa'] : ''; ?>">
@@ -74,6 +74,7 @@
                             !empty($post['webstranka']) ? $post['webstranka'] : ''; ?>">
                             <?php echo form_error('webstranka', '<p class="text-danger">', '</p>'); ?>
                         </div>
+                        <input type="submit" name="postSubmit" class="btn btn-secondary" value="Cancel"/>
                         <input type="submit" name="postSubmit" class="btn btn-primary" value="Submit"/>
                     </form>
                 </div>
