@@ -11,10 +11,10 @@
 
         <br>
             <div class="panel-body">
-                <div style="width: 500px; height: 400px; float: left; ">
-                    <img src="<?php echo !empty($hrady['picture']) ? $hrady['picture'] : '' ?>" style=" border-radius: 8px;max-width: 100%; max-height: 100%; ">
+                <div style="width: 400px; height: 400px; float: left; ">
+                    <img src="<?php echo !empty($hrady['picture']) ? $hrady['picture'] : '' ?>" style="float: left; border-radius: 8px; max-width: 100%; max-height: 100%; ">
                 </div>
-                <h1 id="nadpis_na_stranke" style="margin-left: 20px;"><?php echo
+                    <h1 id="nadpis_na_stranke" style="margin-left: 20px;"><?php echo
                         !empty($hrady['nazov']) ? $hrady['nazov'] : '' ; ?></h1>
                 <div class="form-group" style="margin-left: 30px;">
                     <label><strong>Typ:</strong></label>

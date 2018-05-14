@@ -2,6 +2,7 @@
     <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar"
          aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
 </div>
+<div class="panel-heading" style="margin: 10px; position: fixed;"><a href="<?php echo site_url(''); ?>"><i class="fas fa-angle-double-left fa-5x"></i></a></div>
 <div class="container">
     <div class="col-xs-12">
         <?php
@@ -13,11 +14,9 @@
         ?>
     </div>
     <br>
-    <div class="row">
+    <div class="row" style="text-align: center;">
         <div class="col-xs-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><a href="<?php echo site_url('hrady/'); ?>"><i
-                                class="fas fa-angle-double-left" fa-5x"></></a></div>
                 <div class="panel-body">
                     <form method="post" action="" class="form">
                         <div class="form-group">
@@ -29,8 +28,8 @@
                         </div>
                         <div class="form-group">
                             <label for="title">Stav</label>
-                            <select name="stav" class="form-control">
-                                <option value="">Select...</option>
+                            <select name="stav" id="title" class="form-control">
+                                <option value="">Vyberte súčasný stav hradu...</option>
                                 <?php foreach ($stavy as $stav):
                                     echo "<option value='" . str_replace(" ", "_", $stav['Stav']) . "'>" . $stav['Stav'] . "</option>";
 
@@ -39,16 +38,13 @@
                         </div>
                         <div class="form-group">
                             <label for="title">Typ</label>
-                            <div class="form-group">
-                                <select name="typ">
-                                    <option value="">Select...</option>
-                                    <option value="hrad">Hrad</option>
-                                    <option value="zamok">Zámok</option>
-                                    <option value="kastiel">Kaštieľ</option>
-                                    <option value="klastor">Kláštor</option>
-                                    <option value="zrucanina">Zrúcanina</option>
+                                <select name="typ" id="title" class="form-control">
+                                    <option value="">Vyberte typ hradu...</option>
+                                    <?php foreach ($typy as $typ):
+                                        echo "<option value='" . str_replace(" ", "_", $typ['Typ']) . "'>" . $typ['Typ'] . "</option>";
+
+                                    endforeach; ?>
                                 </select>
-                            </div>
                         </div>
                         <div class="form-group">
                             <label for="title">Ulica a popisné číslo</label>
@@ -58,21 +54,21 @@
                             <?php echo form_error('adresa', '<p class="helpblock text-danger">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="content">E-mail</label>
+                            <label for="content">E-mail</label><br>
                             <input type="email" name="email" class="formcontrol"
                                    placeholder="Zadajte e-mail" value="<?php echo
                             !empty($post['email']) ? $post['email'] : ''; ?>">
                             <?php echo form_error('email', '<p class="text-danger">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="content">Telefónne číslo</label>
+                            <label for="content">Telefónne číslo</label><br>
                             <input type="number" name="telefon" class="formcontrol"
                                    placeholder="Zadajte telefónne číslo" value="<?php echo
                             !empty($post['telefon']) ? $post['telefon'] : ''; ?>">
                             <?php echo form_error('telefon', '<p class="text-danger">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="content">Webstránka</label>
+                            <label for="content">Webstránka</label><br>
                             <input type="text" name="webstranka" class="formcontrol"
                                    placeholder="Zadajte webovú lokalitu" value="<?php echo
                             !empty($post['webstranka']) ? $post['webstranka'] : ''; ?>">

@@ -21,6 +21,14 @@ class Hrady_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+    function dajVsetkyTypyHradov(){
+        $this->db->distinct();
+        $this->db->select('Typ')
+            ->from('hrady');
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
     function dajVsetkoOHrade($id)
     {
