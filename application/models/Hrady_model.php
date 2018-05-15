@@ -86,6 +86,8 @@ class Hrady_model extends CI_Model
         $f10 = $_POST['webstranka'];
         $f2 = str_replace("_", " ", $f2);
         $f3 = str_replace("_", " ", $f3);
+        $f20 = str_replace(",", ".", $f20);
+        $f21 = str_replace(",", ".", $f21);
         $this->db->query("UPDATE historia SET Vznik = '$f4', Text_Historie = '$f5' WHERE id='$f02'");
         $this->db->query("UPDATE hrady SET nazov = '$f1', idHistoria = '$f02', stav = '$f2', typ = '$f3', adresa = '$f6', idMesto = '$f7', gps_lat = '$f20', gps_long = '$f21', email = '$f8', telefon = '$f9', webstranka = '$f10' WHERE id = '$f0'");
     }

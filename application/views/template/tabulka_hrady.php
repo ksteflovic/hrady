@@ -12,7 +12,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <br>
 <br>
 <?php if($this->session->flashdata('msg')): ?>
-    <p><?php echo $this->session->flashdata('msg'); ?></p>
+    <div class="alert alert-success alert-dismissible fade show"">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Success!</strong> <?php echo $this->session->flashdata('msg'); ?>
+    </div>
+<?php endif; ?>
+<?php if($this->session->flashdata('error-msg')): ?>
+<div class="alert alert-danger alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Error!</strong> This alert box could indicate a dangerous or potentially negative action.
+</div>
 <?php endif; ?>
 <div class='container'>
     <div class='row'>

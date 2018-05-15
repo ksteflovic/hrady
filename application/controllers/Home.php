@@ -49,21 +49,21 @@ class Home extends CI_Controller
         $config['use_page_numbers'] = TRUE;
         $this->pagination->initialize($config);
 
-/*
-        $this->load->library("pagination");
+        /*
+                $this->load->library("pagination");
 
-        $config = array();
-        $config["base_url"] = base_url() . "home/index";
-        $config["total_rows"] = count($this->Hrady_model->getRows());
-        $config["per_page"] = 5;
-        $config["uri_segment"] = 3;
+                $config = array();
+                $config["base_url"] = base_url() . "home/index";
+                $config["total_rows"] = count($this->Hrady_model->getRows());
+                $config["per_page"] = 5;
+                $config["uri_segment"] = 3;
 
-        $this->pagination->initialize($config);
+                $this->pagination->initialize($config);
 
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data["results"] = $this->Hrady_model->fetch_castles($config["per_page"], $page);
-        $data["links"] = $this->pagination->create_links();
-*/
+                $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+                $data["results"] = $this->Hrady_model->fetch_castles($config["per_page"], $page);
+                $data["links"] = $this->pagination->create_links();
+        */
         $this->load->view('template/header');
         $this->load->view('template/navigation');
         $this->load->view('template/tabulka_hrady', $data);
@@ -95,19 +95,19 @@ class Home extends CI_Controller
         foreach ($hrady->result() as $hrad) {
             $sub_array = array();
             $sub_array[] = $hrad->id;
-            $sub_array[] = '<img src="'.$hrad->picture.'" class="doTabulky" />'; //$hrad->id;
+            $sub_array[] = '<img src="' . $hrad->picture . '" class="doTabulky" />'; //$hrad->id;
             $sub_array[] = $hrad->nazov;
             $sub_array[] = $hrad->Typ;
             if (strpos($hrad->Stav, 're verejnosť') !== false) {
-                $sub_array[] = '<td><span class="badge badge-success">'. mb_strtoupper($hrad->Stav).'</span></td>';
+                $sub_array[] = '<td><span class="badge badge-success">' . mb_strtoupper($hrad->Stav) . '</span></td>';
             } elseif (strpos($hrad->Stav, 'Ruiny') !== false || strpos($hrad->Stav, 'achoval') !== false) {
-                $sub_array[] = '<td><span class="badge badge-warning">'. mb_strtoupper($hrad->Stav).'</span></td>';
-                } else {
-                $sub_array[] = '<td><span class="badge badge-danger">'. mb_strtoupper($hrad->Stav).'</span></td>';
-                        }
-            $sub_array[] = '<button type="button" class="btn btn-outline-success" onclick="otvorView(this.id)" id="'.$hrad->id.'">Detail</button>';
-            $sub_array[] = '<button type="button" class="btn btn-outline-warning" onclick="otvorUpravu(this.id)" id="'.$hrad->id.'">Uprav</button>';
-            $sub_array[] = '<button type="button" class="btn btn-outline-danger" onclick="otvorVymaz(this.id)" id="'.$hrad->id.'">Vymaž</button>';
+                $sub_array[] = '<td><span class="badge badge-warning">' . mb_strtoupper($hrad->Stav) . '</span></td>';
+            } else {
+                $sub_array[] = '<td><span class="badge badge-danger">' . mb_strtoupper($hrad->Stav) . '</span></td>';
+            }
+            $sub_array[] = '<button type="button" class="btn btn-outline-success" onclick="otvorView(this.id)" id="' . $hrad->id . '">Detail</button>';
+            $sub_array[] = '<button type="button" class="btn btn-outline-warning" onclick="otvorUpravu(this.id)" id="' . $hrad->id . '">Uprav</button>';
+            $sub_array[] = '<button type="button" class="btn btn-outline-danger" onclick="otvorVymaz(this.id)" id="' . $hrad->id . '">Vymaž</button>';
             $pole[] = $sub_array;
         }
 
@@ -121,24 +121,36 @@ class Home extends CI_Controller
         exit();
     }
 
-    function ohodnot(){
+    function ohodnot()
+    {
         $this->load->model('Hrady_model');
         $this->Hrady_model->insertHodnotenie();
         redirect('/home');
         echo "<script type='text/javascript'>alert('Ďakujeme za hodnotenie!');</script>";
     }
 
-    function pridaj(){
+    function pridaj()
+    {
         $this->load->model('Hrady_model');
-        $this->Hrady_model->insertHrad();
-        $this->session->set_flashdata('success_msg', 'Castle has been added successfully.');
+        $pridaj = $this->Hrady_model->insertHrad();
+        if ($pridaj) {
+            $this->session->set_flashdata('msg', 'Castle has been added successfully.');
+        } else {
+            $this->session->set_flashdata('error_msg', 'Some problems occurred, please try again.');
+        }
         redirect('/home');
     }
 
-    function uprav(){
+    function uprav()
+    {
         $this->load->model('Hrady_model');
-        $this->Hrady_model->updateHrad();
-        $this->session->set_flashdata('success_msg', 'Castle has been updated successfully.');
+        $uprav = $this->Hrady_model->updateHrad();
+        if ($uprav) {
+            $this->session->set_flashdata('msg', 'Castle has been updated successfully.');
+        }
+        else{
+            $this->session->set_flashdata('error_msg', 'Some problems occurred, please try again.');
+        }
         redirect('/home');
     }
 
@@ -170,11 +182,12 @@ class Home extends CI_Controller
             $this->form_validation->set_rules('Typ', 'Typ', 'required');
             $this->form_validation->set_rules('rok', 'rok', 'required');
             $this->form_validation->set_rules('historia', 'historia', 'required');
-            $this->form_validation->set_rules('Adresa', 'Adresa');
+            $this->form_validation->set_rules('Adresa', 'Adresa', 'required');
             $this->form_validation->set_rules('mesto', 'mesto', 'required');
-            $this->form_validation->set_rules('email', 'email');
-            $this->form_validation->set_rules('telefon', 'phone');
-            $this->form_validation->set_rules('webstranka', 'web page');
+            $this->form_validation->set_rules('email', 'email', 'required');
+            $this->form_validation->set_rules('telefon', 'phone', 'required');
+            $this->form_validation->set_rules('webstranka', 'web page', 'required');
+            $this->form_validation->set_rules('picture', 'picture', 'required');
             //priprava dat pre vlozenie
             $postData = array(
                 'nazov' => $this->input->post('nazov'),
@@ -186,7 +199,8 @@ class Home extends CI_Controller
                 'mesto' => $this->input->post('mesto'),
                 'email' => $this->input->post('email'),
                 'telefon' => $this->input->post('telefon'),
-                'webstranka' => $this->input->post('webstranka')
+                'webstranka' => $this->input->post('webstranka'),
+                'picture' => $this->input->post('picture')
             );
             //validacia zaslanych dat
             if ($this->form_validation->run() == true) {
@@ -226,13 +240,14 @@ class Home extends CI_Controller
             $this->form_validation->set_rules('Typ', 'Typ', 'required');
             $this->form_validation->set_rules('rok', 'rok', 'required');
             $this->form_validation->set_rules('historia', 'historia', 'required');
-            $this->form_validation->set_rules('Adresa', 'Adresa');
+            $this->form_validation->set_rules('Adresa', 'Adresa', 'required');
             $this->form_validation->set_rules('mesto', 'mesto', 'required');
             $this->form_validation->set_rules('gps_lat', 'gps_lat', 'required');
             $this->form_validation->set_rules('gps_long', 'gps_long', 'required');
-            $this->form_validation->set_rules('email', 'email');
-            $this->form_validation->set_rules('telefon', 'telefon');
-            $this->form_validation->set_rules('webstranka', 'webstranka');
+            $this->form_validation->set_rules('email', 'email', 'required');
+            $this->form_validation->set_rules('telefon', 'telefon', 'required');
+            $this->form_validation->set_rules('webstranka', 'webstranka', 'required');
+            $this->form_validation->set_rules('picture', 'picture', 'required');
             // priprava dat pre aktualizaciu
             $postData = array(
                 'nazov' => $this->input->post('nazov'),
@@ -246,7 +261,8 @@ class Home extends CI_Controller
                 'gps_long' => $this->input->post('gps_long'),
                 'email' => $this->input->post('email'),
                 'telefon' => $this->input->post('telefon'),
-                'webstranka' => $this->input->post('webstranka')
+                'webstranka' => $this->input->post('webstranka'),
+                'picture' => $this->input->post('picture')
             );
         }
         $data['post'] = $postData;
@@ -268,7 +284,7 @@ class Home extends CI_Controller
             //odstranenie zaznamu
             $delete = $this->Hrady_model->delete($id);
             if ($delete) {
-                $this->session->set_flashdata('success_msg', 'Castle has been removed successfully.');
+                $this->session->set_flashdata('msg', 'Castle has been removed successfully.');
             } else {
                 $this->session->set_flashdata('error_msg', 'Some problems occurred, please try again.');
             }
@@ -337,7 +353,8 @@ class Home extends CI_Controller
         echo json_encode($data);
     }
 
-    function navstevnostHrady($id){
+    function navstevnostHrady($id)
+    {
         header("Access-Control-Allow-Origin: *");
 
         define('DB_HOST', 'localhost');
@@ -351,7 +368,7 @@ class Home extends CI_Controller
             die("Connection failed: " . $mysqli->error);
         }
 
-        $query = sprintf("SELECT hodnotenie, COUNT(*) AS pocet FROM rating WHERE idHrad = ".$id." GROUP BY hodnotenie");
+        $query = sprintf("SELECT hodnotenie, COUNT(*) AS pocet FROM rating WHERE idHrad = " . $id . " GROUP BY hodnotenie");
 
         $result = $mysqli->query($query);
 

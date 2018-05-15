@@ -37,7 +37,7 @@ endif;
                     else :
                         echo base_url();?>index.php/home/uprav/<?php$idcko;
                     endif;
-                    */ ?> <?php if (strpos($action, 'Pridanie')): echo site_url('home/pridaj');
+                    */ ?> <?php if (strpos($action, 'Pridanie') !== false): echo site_url('home/pridaj');
                     else:
                         echo site_url('home/uprav');
                         $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -46,20 +46,20 @@ endif;
                             $history = $post['idHistoria'];
                         }
                     endif;
-                    ?>" class="form" onchange="handleSelect()">
+                    ?>" class="form">
 
                         <div class="form-group">
 
                             <input type="hidden" name="idHrad" value="<?php echo !empty($end) ? $end : ''; ?>">
                             <input type="hidden" name="idHistoria" value="<?php echo !empty($history) ? $history : ''; ?>">
-                            <label for="title">Názov</label>
+                            <label for="title"><strong>Názov</strong></label>
                             <input type="text" class="form-control"
                                    name="nazov" placeholder="Sem vložte názov hradu" value="<?php echo
                             !empty($post['nazov']) ? $post['nazov'] : ''; ?>" required>
                             <?php echo form_error('nazov', '<p class="help-block text-danger">', '</p>'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="title">Stav</label>
+                            <label for="title"><strong>Stav</strong></label>
                             <select name="stav" id="title" class="form-control" required>
                                 <option value="" selected disabled hidden>Vyberte súčasný stav hradu...</option>
                                 <?php foreach ($stavy as $stav):
@@ -72,11 +72,10 @@ endif;
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="typ">Typ</label>
+                            <label for="typ"><strong>Typ</strong></label>
                             <select name="typ" id="typ" class="form-control" required>
                                 <option value="" selected disabled hidden>Vyberte typ hradu...</option>
                                 <?php foreach ($typy as $typ):
-
                                     if ($typ['Typ'] == $post['Typ']):
                                         echo "<option selected value='" . str_replace(" ", "_", $typ['Typ']) . "'>" . $typ['Typ'] . "</option>";
                                     else:
@@ -88,10 +87,10 @@ endif;
 
                         <label for="title"><strong>Rok postavenia hradu</strong></label>
                         <input type="text" class="form-control"
-                               name="rok" placeholder="Sem vložte približný rok vzniku" value="<?php echo
+                               name="rok" placeholder="Sem vložte približný rok alebo storočie" value="<?php echo
                         !empty($post['rok']) ? $post['rok'] : ''; ?>"
                                required> <?php echo form_error('rok', '<p class="help-block text-danger">', '</p>'); ?>
-
+                        <br>
                         <div class="form-group">
                             <label for="comment"><strong>História:</strong></label>
                             <textarea class="form-control" rows="7" id="historia" name="historia" required><?php echo
@@ -124,17 +123,18 @@ endif;
                             <?php echo form_error('mesto', '<p class="helpblock text-danger">', '</p>'); ?>
                         </div>
 
+                        <div class="form-group col-xs-6">
                         <label for="title"><strong>GPS súradnice</strong></label>
                         <input type="text" class="form-control"
                                name="gps_lat" placeholder="Latitude" value="<?php echo
                         !empty($post['gps_lat']) ? $post['gps_lat'] : ''; ?>"
                                required> <?php echo form_error('gps_lat', '<p class="help-block text-danger">', '</p>'); ?>
-
                         <input type="text" class="form-control"
                                name="gps_long" placeholder="Longitude" value="<?php echo
                         !empty($post['gps_long']) ? $post['gps_long'] : ''; ?>"
                                required> <?php echo form_error('gps_long', '<p class="help-block text-danger">', '</p>'); ?>
-
+                            <p style="text-align: center"><a target="_blank" href="https://www.google.sk/maps?hl=sk&tab=wl">Kliknutím si otvoríte mapy pre ľahšie zadávanie súradníc</a></p>
+                        </div>
 
                         <div class="form-group">
                             <label for="content"><strong>E-mail</strong></label><br>
@@ -159,7 +159,12 @@ endif;
                             !empty($post['webstranka']) ? $post['webstranka'] : ''; ?>">
                             <?php echo form_error('webstranka', '<p class="text-danger">', '</p>'); ?>
                         </div>
-
+                        <br>
+                        <div class="form-group">
+                            <label for="picture"><strong>Obrázok:</strong></label>
+                            <textarea class="form-control" placeholder="Sem vložte url obrázka, odporúčame ukladať obrázky v rozlíšení, ktoré majú rovnakú výšku a šírku. Napr.: 500 x 500 ..." rows="3" id="picture" name="picture" required><?php echo
+                                !empty($post['picture']) ? $post['picture'] : ''; ?></textarea>
+                        </div>
                         <input type="submit" name="postSubmit" class="btn btn-primary" value="Potvrdiť"/>
                     </form>
                     <br>
