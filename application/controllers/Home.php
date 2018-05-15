@@ -95,7 +95,7 @@ class Home extends CI_Controller
         foreach ($hrady->result() as $hrad) {
             $sub_array = array();
             $sub_array[] = $hrad->id;
-            $sub_array[] = '<img src="'.$hrad->picture.'" class="doTabulky lazyload" />'; //$hrad->id;
+            $sub_array[] = '<img src="'.$hrad->picture.'" class="doTabulky" />'; //$hrad->id;
             $sub_array[] = $hrad->nazov;
             $sub_array[] = $hrad->Typ;
             if (strpos($hrad->Stav, 're verejnosť') !== false) {
@@ -183,7 +183,8 @@ class Home extends CI_Controller
         $data['post'] = $postData;
         $data['stavy'] = $this->Hrady_model->dajVsetkyStavyHradov();
         $data['typy'] = $this->Hrady_model->dajVsetkyTypyHradov();
-        // $data['title'] = 'Create Temperature';
+        $data['mesta'] = $this->Hrady_model->dajMesta();
+
         $data['action'] = 'Pridanie nového hradu do databázy';
         //zobrazenie formulara pre vlozenie a editaciu dat
         $this->load->view('template/header', $data);
@@ -200,19 +201,25 @@ class Home extends CI_Controller
         //zistenie, ci bola zaslana poziadavka na aktualizaciu
         if ($this->input->post('postSubmit')) {
             //definicia pravidiel validacie
-            $this->form_validation->set_rules('nazov', 'Názov', 'required');
-            $this->form_validation->set_rules('Stav', 'stav', 'required');
-            $this->form_validation->set_rules('Typ', 'type', 'required');
+            $this->form_validation->set_rules('nazov', 'nazov', 'required');
+            $this->form_validation->set_rules('Stav', 'Stav', 'required');
+            $this->form_validation->set_rules('Typ', 'Typ', 'required');
+            $this->form_validation->set_rules('rok', 'rok', 'required');
+            $this->form_validation->set_rules('historia', 'historia', 'required');
             $this->form_validation->set_rules('Adresa', 'Adresa', 'required');
-            $this->form_validation->set_rules('email', 'email', 'optional');
-            $this->form_validation->set_rules('telefon', 'phone', 'optional');
-            $this->form_validation->set_rules('webstranka', 'web page', 'optional');
+            $this->form_validation->set_rules('mesto', 'mesto', 'required');
+            $this->form_validation->set_rules('email', 'email', 'required');
+            $this->form_validation->set_rules('telefon', 'telefon', 'required');
+            $this->form_validation->set_rules('webstranka', 'webstranka', 'required');
             // priprava dat pre aktualizaciu
             $postData = array(
                 'nazov' => $this->input->post('nazov'),
                 'stav' => $this->input->post('Stav'),
                 'typ' => $this->input->post('Typ'),
+                'rok' => $this->input->post('rok'),
+                'historia' => $this->input->post('historia'),
                 'adresa' => $this->input->post('Adresa'),
+                'mesto' => $this->input->post('mesto'),
                 'email' => $this->input->post('email'),
                 'telefon' => $this->input->post('telefon'),
                 'webstranka' => $this->input->post('webstranka')
@@ -225,12 +232,14 @@ class Home extends CI_Controller
                     $this->session->set_userdata('success_msg', 'Castle has been updated successfully.');
                     redirect('/home');
                 } else {
-                    $data['error_msg'] = 'Some problems occurred, please try
-again.';
+                    $data['error_msg'] = 'Some problems occurred, please try again.';
                 }
             }
         }
         $data['post'] = $postData;
+        $data['stavy'] = $this->Hrady_model->dajVsetkyStavyHradov();
+        $data['typy'] = $this->Hrady_model->dajVsetkyTypyHradov();
+        $data['mesta'] = $this->Hrady_model->dajMesta();
         //$data['title'] = 'Update Temperature';
         $data['action'] = 'Úprava existujúceho hradu';
         $this->load->view('template/header', $data);
@@ -315,7 +324,7 @@ again.';
         echo json_encode($data);
     }
 
-    function navstevnostHrady(){
+    function navstevnostHrady($id){
         header("Access-Control-Allow-Origin: *");
 
         define('DB_HOST', 'localhost');
@@ -329,7 +338,7 @@ again.';
             die("Connection failed: " . $mysqli->error);
         }
 
-        $query = sprintf("SELECT hodnotenie, COUNT(*) AS pocet FROM rating WHERE idHrad = 1 GROUP BY hodnotenie");
+        $query = sprintf("SELECT hodnotenie, COUNT(*) AS pocet FROM rating WHERE idHrad = ".$id." GROUP BY hodnotenie");
 
         $result = $mysqli->query($query);
 

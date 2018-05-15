@@ -116,23 +116,18 @@
                 <script async defer
                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwSnSssRpMOoIivHqn8EVpZK-y6bnseWg&callback=initMap"
                         type="text/javascript"></script>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+
             </div><!-- widgets column left end -->
-
-
 
             <div style="float: right; position: relative;">
                 <canvas id="myChart" width="600" height="450" style="margin-left: 5%;">
                 </canvas>
             </div>
             <script type="text/javascript">
+                var idcko = window.location.pathname.split("/").pop();
                 $(document).ready(function () {
                     $.ajax({
-                        url: "<?php echo site_url("home/navstevnostHrady") ?>",
+                        url: "<?php echo site_url("home/navstevnostHrady/")?>"+idcko,
                         dataType: "json",
                         method: "GET",
                         success: function (Jdata) {
@@ -152,7 +147,7 @@
                                     {
                                         label: 'Hodnotenie návštevníkov hradu',
                                         data: pocet,
-                                        backgroundColor: ["rgb(255, 0,0)", "rgb(255, 97, 0)", "rgb(204, 200, 0)","rgb(184, 233, 0)","rgb(73, 237, 158)"]
+                                        backgroundColor: ["rgb(255, 0,0)", "rgb(255, 97, 0)", "rgb(254, 201, 78)","rgb(255, 238, 0)","rgb(73, 237, 158)"]
                                     }
                                 ]
                             };

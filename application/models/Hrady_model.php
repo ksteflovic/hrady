@@ -30,6 +30,14 @@ class Hrady_model extends CI_Model
         return $query->result_array();
     }
 
+    function dajMesta(){
+        $this->db->select('*')
+            ->from('mesto');
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     function dajVstupne($id){
         $this->db->select('*')
             ->from('vstupne')
@@ -63,7 +71,12 @@ class Hrady_model extends CI_Model
     function getRows($id = "")
     {
         if (!empty($id)) {
-            $query = $this->db->get_where('hrady', array('id' => $id));
+            $this->db->select('hrady.nazov, hrady.Stav, hrady.Typ, hrady.picture, historia.vznik AS rok, historia.Text_historie AS historia, hrady.Adresa, mesto.nazov AS mesto, mesto.psc AS psc, hrady.gps_lat, hrady.gps_long, hrady.email, hrady.telefon, hrady.webstranka')
+                ->from('hrady')
+                ->join('historia', 'hrady.idHistoria = historia.id')
+                ->join('mesto', 'hrady.idMesto = mesto.id')
+                ->where('hrady.id', $id);
+            $query = $this->db->get();
             return $query->row_array();
         } else {
             $query = $this->db->get('hrady');
