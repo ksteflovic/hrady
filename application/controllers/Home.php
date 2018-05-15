@@ -127,6 +127,21 @@ class Home extends CI_Controller
         redirect('/home');
         echo "<script type='text/javascript'>alert('Ďakujeme za hodnotenie!');</script>";
     }
+
+    function pridaj(){
+        $this->load->model('Hrady_model');
+        $this->Hrady_model->insertHrad();
+        $this->session->set_flashdata('success_msg', 'Castle has been added successfully.');
+        redirect('/home');
+    }
+
+    function uprav(){
+        $this->load->model('Hrady_model');
+        $this->Hrady_model->updateHrad();
+        $this->session->set_flashdata('success_msg', 'Castle has been updated successfully.');
+        redirect('/home');
+    }
+
     public function view($id)
     {
         $data = array();
@@ -151,19 +166,24 @@ class Home extends CI_Controller
         //zistenie, ci bola zaslana poziadavka na pridanie zaznamu
         if ($this->input->post('postSubmit')) {
             //definicia pravidiel validacie
-            $this->form_validation->set_rules('nazov', 'Názov', 'required');
             $this->form_validation->set_rules('Stav', 'Stav', 'required');
-            $this->form_validation->set_rules('Typ', 'type', 'required');
-            $this->form_validation->set_rules('Adresa', 'Adresa', 'required');
-            $this->form_validation->set_rules('email', 'email', 'required');
-            $this->form_validation->set_rules('telefon', 'phone', 'required');
-            $this->form_validation->set_rules('webstranka', 'web page', 'required');
+            $this->form_validation->set_rules('Typ', 'Typ', 'required');
+            $this->form_validation->set_rules('rok', 'rok', 'required');
+            $this->form_validation->set_rules('historia', 'historia', 'required');
+            $this->form_validation->set_rules('Adresa', 'Adresa');
+            $this->form_validation->set_rules('mesto', 'mesto', 'required');
+            $this->form_validation->set_rules('email', 'email');
+            $this->form_validation->set_rules('telefon', 'phone');
+            $this->form_validation->set_rules('webstranka', 'web page');
             //priprava dat pre vlozenie
             $postData = array(
                 'nazov' => $this->input->post('nazov'),
                 'stav' => $this->input->post('Stav'),
                 'typ' => $this->input->post('Typ'),
+                'rok' => $this->input->post('rok'),
+                'historia' => $this->input->post('historia'),
                 'adresa' => $this->input->post('Adresa'),
+                'mesto' => $this->input->post('mesto'),
                 'email' => $this->input->post('email'),
                 'telefon' => $this->input->post('telefon'),
                 'webstranka' => $this->input->post('webstranka')
@@ -173,7 +193,7 @@ class Home extends CI_Controller
                 //vlozenie dat
                 $insert = $this->Hrady_model->insert($postData);
                 if ($insert) {
-                    $this->session->set_userdata('success_msg', 'Castle was added successfully.');
+                    $this->session->set_flashdata('msg', 'Castle was added successfully.');
                     redirect('/home');
                 } else {
                     $data['error_msg'] = 'Some problems occurred, please try again.';
@@ -206,11 +226,13 @@ class Home extends CI_Controller
             $this->form_validation->set_rules('Typ', 'Typ', 'required');
             $this->form_validation->set_rules('rok', 'rok', 'required');
             $this->form_validation->set_rules('historia', 'historia', 'required');
-            $this->form_validation->set_rules('Adresa', 'Adresa', 'required');
+            $this->form_validation->set_rules('Adresa', 'Adresa');
             $this->form_validation->set_rules('mesto', 'mesto', 'required');
-            $this->form_validation->set_rules('email', 'email', 'required');
-            $this->form_validation->set_rules('telefon', 'telefon', 'required');
-            $this->form_validation->set_rules('webstranka', 'webstranka', 'required');
+            $this->form_validation->set_rules('gps_lat', 'gps_lat', 'required');
+            $this->form_validation->set_rules('gps_long', 'gps_long', 'required');
+            $this->form_validation->set_rules('email', 'email');
+            $this->form_validation->set_rules('telefon', 'telefon');
+            $this->form_validation->set_rules('webstranka', 'webstranka');
             // priprava dat pre aktualizaciu
             $postData = array(
                 'nazov' => $this->input->post('nazov'),
@@ -220,21 +242,12 @@ class Home extends CI_Controller
                 'historia' => $this->input->post('historia'),
                 'adresa' => $this->input->post('Adresa'),
                 'mesto' => $this->input->post('mesto'),
+                'gps_lat' => $this->input->post('gps_lat'),
+                'gps_long' => $this->input->post('gps_long'),
                 'email' => $this->input->post('email'),
                 'telefon' => $this->input->post('telefon'),
                 'webstranka' => $this->input->post('webstranka')
             );
-            //validacia zaslanych dat
-            if ($this->form_validation->run() == true) {
-                //aktualizacia dat
-                $update = $this->Hrady_model->update($postData, $id);
-                if ($update) {
-                    $this->session->set_userdata('success_msg', 'Castle has been updated successfully.');
-                    redirect('/home');
-                } else {
-                    $data['error_msg'] = 'Some problems occurred, please try again.';
-                }
-            }
         }
         $data['post'] = $postData;
         $data['stavy'] = $this->Hrady_model->dajVsetkyStavyHradov();
@@ -255,9 +268,9 @@ class Home extends CI_Controller
             //odstranenie zaznamu
             $delete = $this->Hrady_model->delete($id);
             if ($delete) {
-                $this->session->set_userdata('success_msg', 'Castle has been removed successfully.');
+                $this->session->set_flashdata('success_msg', 'Castle has been removed successfully.');
             } else {
-                $this->session->set_userdata('error_msg', 'Some problems occurred, please try again.');
+                $this->session->set_flashdata('error_msg', 'Some problems occurred, please try again.');
             }
         }
         redirect('/home');

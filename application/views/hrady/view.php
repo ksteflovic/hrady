@@ -231,7 +231,7 @@
             <div class="container" style="background: white;">
                 <h2>Hodnotenie hradu</h2>
                 <p>Sem prispejete dobrým ohodnotením</p>
-                <form method="post" action="<?php echo base_url();?>index.php/home/ohodnot" class="form" id="myform">
+                <form method="post" action="<?php echo site_url('home/ohodnot')?>" class="form" id="myform">
                     <div class="form-group">
                         <?php
                         $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -242,7 +242,7 @@
                         ?>
                         <input type="hidden" name="idHrad" value="<?php echo $end; ?>">
                         <label for="meno"><strong>Meno:</strong></label>
-                        <input type="text" placeholder="Vaše meno" class="form-control" id="meno" name="meno" required="">
+                        <input type="text" placeholder="Vaše meno" class="form-control" id="meno" name="meno" required>
                     </div>
                     <div class="form-group">
                         <label for="input-2"><strong>Hodnotenie:</strong></label><br>

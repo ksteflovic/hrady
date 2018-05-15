@@ -11,6 +11,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <br>
 <br>
 <br>
+<?php if($this->session->flashdata('msg')): ?>
+    <p><?php echo $this->session->flashdata('msg'); ?></p>
+<?php endif; ?>
 <div class='container'>
     <div class='row'>
         <div class="col-md-12">

@@ -47,6 +47,48 @@ class Hrady_model extends CI_Model
         return $query->result_array();
     }
 
+    function insertHrad(){
+        $f1 = $_POST['nazov'];
+        $f2 = $_POST['stav'];
+        $f3 = $_POST['typ'];
+        $f4 = $_POST['rok'];
+        $f5 = $_POST['historia'];
+        $f6 = $_POST['adresa'];
+        $f7 = $_POST['mesto'];
+        $f20 = $_POST['gps_lat'];
+        $f21 = $_POST['gps_long'];
+        $f8 = $_POST['email'];
+        $f9 = $_POST['telefon'];
+        $f10 = $_POST['webstranka'];
+        $f2 = str_replace("_", " ", $f2);
+        $f3 = str_replace("_", " ", $f3);
+        $this->db->query("INSERT INTO historia(Vznik, Text_Historie) VALUES('$f4','$f5')");
+        $idHistoria = $this->db->insert_id();
+        $this->db->query("INSERT INTO hrady(nazov, idHistoria, stav, typ, adresa, idMesto, gps_lat, gps_long, email, telefon, webstranka) VALUES('$f1','$idHistoria',
+'$f2','$f3','$f6','$f7','$f20','$f21','$f8','$f9','$f10')");
+
+    }
+
+    function updateHrad(){
+        $f0 = $_POST['idHrad'];
+        $f02 = $_POST['idHistoria'];
+        $f1 = $_POST['nazov'];
+        $f2 = $_POST['stav'];
+        $f3 = $_POST['typ'];
+        $f4 = $_POST['rok'];
+        $f5 = $_POST['historia'];
+        $f6 = $_POST['adresa'];
+        $f7 = $_POST['mesto'];
+        $f20 = $_POST['gps_lat'];
+        $f21 = $_POST['gps_long'];
+        $f8 = $_POST['email'];
+        $f9 = $_POST['telefon'];
+        $f10 = $_POST['webstranka'];
+        $f2 = str_replace("_", " ", $f2);
+        $f3 = str_replace("_", " ", $f3);
+        $this->db->query("UPDATE historia SET Vznik = '$f4', Text_Historie = '$f5' WHERE id='$f02'");
+        $this->db->query("UPDATE hrady SET nazov = '$f1', idHistoria = '$f02', stav = '$f2', typ = '$f3', adresa = '$f6', idMesto = '$f7', gps_lat = '$f20', gps_long = '$f21', email = '$f8', telefon = '$f9', webstranka = '$f10' WHERE id = '$f0'");
+    }
     function insertHodnotenie(){
         $f1 = $_POST['meno'];
         $f5 = $_POST['idHrad'];
@@ -71,7 +113,7 @@ class Hrady_model extends CI_Model
     function getRows($id = "")
     {
         if (!empty($id)) {
-            $this->db->select('hrady.nazov, hrady.Stav, hrady.Typ, hrady.picture, historia.vznik AS rok, historia.Text_historie AS historia, hrady.Adresa, mesto.nazov AS mesto, mesto.psc AS psc, hrady.gps_lat, hrady.gps_long, hrady.email, hrady.telefon, hrady.webstranka')
+            $this->db->select('hrady.nazov, hrady.Stav, hrady.Typ, hrady.picture, historia.id as idHistoria, historia.vznik AS rok, historia.Text_historie AS historia, hrady.Adresa, mesto.nazov AS mesto, mesto.psc AS psc, hrady.gps_lat, hrady.gps_long, hrady.email, hrady.telefon, hrady.webstranka')
                 ->from('hrady')
                 ->join('historia', 'hrady.idHistoria = historia.id')
                 ->join('mesto', 'hrady.idMesto = mesto.id')
