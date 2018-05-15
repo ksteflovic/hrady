@@ -99,15 +99,15 @@ class Home extends CI_Controller
             $sub_array[] = $hrad->nazov;
             $sub_array[] = $hrad->Typ;
             if (strpos($hrad->Stav, 're verejnosť') !== false) {
-                $sub_array[] = '<td><span class="badge badge-success">' . mb_strtoupper($hrad->Stav) . '</span></td>';
+                $sub_array[] = '<td><h5><span class="badge badge-success">' . mb_strtoupper($hrad->Stav) . '</span></h5></td>';
             } elseif (strpos($hrad->Stav, 'Ruiny') !== false || strpos($hrad->Stav, 'achoval') !== false) {
-                $sub_array[] = '<td><span class="badge badge-warning">' . mb_strtoupper($hrad->Stav) . '</span></td>';
+                $sub_array[] = '<td><h5><span class="badge badge-warning">' . mb_strtoupper($hrad->Stav) . '</span></h5></td>';
             } else {
-                $sub_array[] = '<td><span class="badge badge-danger">' . mb_strtoupper($hrad->Stav) . '</span></td>';
+                $sub_array[] = '<td><h5><span class="badge badge-danger">' . mb_strtoupper($hrad->Stav) . '</span></h5></td>';
             }
-            $sub_array[] = '<button type="button" class="btn btn-outline-success" onclick="otvorView(this.id)" id="' . $hrad->id . '">Detail</button>';
-            $sub_array[] = '<button type="button" class="btn btn-outline-warning" onclick="otvorUpravu(this.id)" id="' . $hrad->id . '">Uprav</button>';
-            $sub_array[] = '<button type="button" class="btn btn-outline-danger" onclick="otvorVymaz(this.id)" id="' . $hrad->id . '">Vymaž</button>';
+            $sub_array[] = '<button type="button" class="btn btn-outline-success" onclick="otvorView(this.id)" id="' . $hrad->id . '">Detail <i class="fas fa-eye"></i></button>';
+            $sub_array[] = '<button type="button" class="btn btn-outline-warning" onclick="otvorUpravu(this.id)" id="' . $hrad->id . '">Uprav <i class="fas fa-pencil-alt"></i></button>';
+            $sub_array[] = '<button type="button" class="btn btn-outline-danger" onclick="otvorVymaz(this.id)" id="' . $hrad->id . '">Vymaž <i class="fas fa-trash-alt"></i></button>';
             $pole[] = $sub_array;
         }
 

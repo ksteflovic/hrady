@@ -25,19 +25,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php endif; ?>
 <div class='container'>
     <div class='row'>
-        <div class="col-md-12">
+        <div class="col-md-12" style="background: white;">
             <h1>Zoznam hradov</h1>
             <table id="CastleTable" class="table table-striped">
                 <thead>
                 <tr>
                     <th>#</th>
                     <th>Avatar</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Status</th>
+                    <th>Názov</th>
+                    <th>Typ</th>
+                    <th>Stav</th>
                     <th></th>
                     <th></th>
-                    <th><a href="<?php echo site_url('home/add')?>"><button type="button" class="btn btn-primary" >Pridať nový hrad</button></a></th>
+                    <th><a href="<?php echo site_url('home/add')?>"><button type="button" class="btn btn-primary" ><i class="fas fa-plus"></i> Pridať nový hrad</button></a></th>
 
                 </tr>
                 </thead>

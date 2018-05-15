@@ -53,7 +53,9 @@
                                         <tr>
                                             <th width="30%">Typ</th>
                                             <th width="20%">Suma</th>
-                                            <th width="50%">Poznámka</th>
+                                            <th width="40%">Poznámka</th>
+
+
                                         </tr>
                                         </thead>
                                         <tbody id="userData">
