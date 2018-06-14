@@ -48,7 +48,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="panel panel-default ">
-                                    <table class="table table-striped" style="width: 1000px; align: center;">
+                                    <table class="table table-striped" style="width: 100%; align: center;">
                                         <thead>
                                         <tr>
                                             <th width="30%">Typ</th>
@@ -72,57 +72,56 @@
                                             </tr>
                                         <?php endif; ?>
                                         </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            </table>
                         </div>
                         <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
+                        <br><br>
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
+            <div style="display: flex; justify-content: space-around">
+                <div id="map" style=""></div>
+                <div class="col-lg-3 col-md-3" style="float: left; position: relative;"><!-- widgets column left -->
+                    <ul class="list-unstyled clear-margins"><!-- widgets -->
 
-            <div class="col-lg-3 col-md-3" style="float: left; position: relative;"><!-- widgets column left -->
-                <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        <li class="widget-container widget_nav_menu"><!-- widgets list -->
+                            <h1 class="title-widget">Informácie</h1>
+                            <ul>
+                                <li></li>
+                            </ul>
+                            <p><strong>🌐 Webstránka:</strong><br> <?php echo !empty($hrady['webstranka']) ? $hrady['webstranka'] : 'Nie je'; ?></p>
+                            <p><strong>📱 Telefón:</strong><br> <?php echo !empty($hrady['telefon']) ? $hrady['telefon'] : 'Nie je'; ?></p>
+                            <p><strong>📧 Email:</strong><br> <?php echo !empty($hrady['email']) ? $hrady['email'] : 'Nie je'; ?></p>
+                            <strong>📮 Adresa: </strong>
+                            <p>
+                                <?php echo !empty($hrady['Adresa']) ? $hrady['Adresa'] : ''; ?>, <br><?php echo
+                                !empty($hrady['psc']) ? $hrady['psc'] : ''; ?> <?php echo !empty($hrady['mesto']) ? $hrady['mesto'] : ''; ?>
+                            </p>
+                            <br><br><br>
+                        </li>
+                    </ul>
+                    <script>
+                        function initMap() {
+                            var hrad = {
+                                lat: <?php echo
+                                $gps_lat;?>, lng: <?php echo
+                                $gps_long; ?>};
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 17,
+                                center: hrad
+                            });
+                        }
+                    </script>
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwSnSssRpMOoIivHqn8EVpZK-y6bnseWg&callback=initMap"
+                            type="text/javascript"></script>
 
-                    <li class="widget-container widget_nav_menu"><!-- widgets list -->
-
-                        <h1 class="title-widget">Informácie</h1>
-                        <ul>
-                            <li></li>
-                        </ul>
-                        <p><strong>🌐 Webstránka:</strong><br> <?php echo !empty($hrady['webstranka']) ? $hrady['webstranka'] : 'Nie je'; ?></p>
-                        <p><strong>📱 Telefón:</strong><br> <?php echo !empty($hrady['telefon']) ? $hrady['telefon'] : 'Nie je'; ?></p>
-                        <p><strong>📧 Email:</strong><br> <?php echo !empty($hrady['email']) ? $hrady['email'] : 'Nie je'; ?></p>
-                        <strong>📮 Adresa: </strong>
-                        <p>
-                            <?php echo !empty($hrady['Adresa']) ? $hrady['Adresa'] : ''; ?>, <br><?php echo
-                            !empty($hrady['psc']) ? $hrady['psc'] : ''; ?> <?php echo !empty($hrady['mesto']) ? $hrady['mesto'] : ''; ?>
-                        </p>
-                        <div id="map"></div>
-                    </li>
-                </ul>
-                <script>
-                    function initMap() {
-                        var hrad = {
-                            lat: <?php echo
-                            $gps_lat;?>, lng: <?php echo
-                            $gps_long; ?>};
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 17,
-                            center: hrad
-                        });
-                    }
-                </script>
-                <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwSnSssRpMOoIivHqn8EVpZK-y6bnseWg&callback=initMap"
-                        type="text/javascript"></script>
-
-            </div><!-- widgets column left end -->
-
-            <div style="float: right; position: relative;">
-                <canvas id="myChart" width="600" height="450" style="margin-left: 5%;">
+                </div><!-- widgets column left end -->
+            </div>
+            <div style="vertical-align: center; text-align:center;">
+                <canvas id="myChart" width="600" height="450" style="vertical-align: center;">
                 </canvas>
             </div>
             <script type="text/javascript">
@@ -174,41 +173,27 @@
                     });
                 });
 
-/*
-                var ctx2 = document.getElementById("myChart").getContext('2d');
-                var myChart2 = new Chart(ctx2, {
-                    type: 'pie',
-                    data: {
-                        labels: ["Red", "Blue", "Yellow"],
-                        datasets: [{
-                            label: "Hodnotenie",
-                            data: [300, 50, 100],
-                            backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
-                        }]
-                    },
-                    options: {
-                        responsive: false
-                    }
-                });
 
-                */
+                /*
+                                var ctx2 = document.getElementById("myChart").getContext('2d');
+                                var myChart2 = new Chart(ctx2, {
+                                    type: 'pie',
+                                    data: {
+                                        labels: ["Red", "Blue", "Yellow"],
+                                        datasets: [{
+                                            label: "Hodnotenie",
+                                            data: [300, 50, 100],
+                                            backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: false
+                                    }
+                                });
+
+                                */
             </script>
 
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
             <br>
             <br>
             <br>
@@ -248,13 +233,13 @@
                     </div>
                     <div class="form-group">
                         <label for="input-2"><strong>Hodnotenie:</strong></label><br>
-                            <div class="starrating risingstar d-flex flex-row-reverse" style="float: left;">
-                                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Vynikajúce">5</label>
-                                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Veľmi dobré">4</label>
-                                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Dobré">3</label>
-                                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Ok">2</label>
-                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Veľmi slabé">1</label>
-                            </div>
+                        <div class="starrating risingstar d-flex flex-row-reverse" style="float: left;">
+                            <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Vynikajúce">5</label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Veľmi dobré">4</label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Dobré">3</label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Ok">2</label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Veľmi slabé">1</label>
+                        </div>
                     </div>
                     <br>
                     <br>
@@ -276,8 +261,6 @@
             </div>
         </div>
 
-    </div>
-    </div>
     </div>
 <?php endforeach; ?>
 <br>
