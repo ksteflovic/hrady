@@ -8,8 +8,8 @@
 <?php foreach ($hradky as $hrady):
     $gps_lat = $hrady["gps_lat"];
     $gps_long = $hrady["gps_long"]; ?>
-    <div class="container" style="">
-        <div class="row">
+    <div class="container" >
+        <div class="row" >
             <div class="panel panel-default">
                 <br>
                 <div class="panel-body">
@@ -48,7 +48,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="panel panel-default ">
-                                    <table class="table table-striped" style="width: 100%; align: center;">
+                                    <table class="table table-striped" style="width: 100%; table-layout:fixed;">
                                         <thead>
                                         <tr>
                                             <th width="30%">Typ</th>
