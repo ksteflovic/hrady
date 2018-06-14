@@ -81,9 +81,9 @@
                     </div>
                 </div>
             </div>
-            <div style="display: flex; justify-content: space-around">
+            <div style="display: flex; justify-content: space-around; margin: 0 auto;">
                 <div id="map" style=""></div>
-                <div class="col-lg-3 col-md-3" style="float: left; position: relative;"><!-- widgets column left -->
+                <div class="col-lg-3 col-md-3" style="float: left; position: relative;" ><!-- widgets column left -->
                     <ul class="list-unstyled clear-margins"><!-- widgets -->
 
                         <li class="widget-container widget_nav_menu"><!-- widgets list -->
@@ -120,8 +120,8 @@
 
                 </div><!-- widgets column left end -->
             </div>
-            <div style="vertical-align: center; text-align:center;">
-                <canvas id="myChart" width="600" height="450" style="vertical-align: center;">
+            <div style="display: block; margin: 0 auto;">
+                <canvas id="myChart" width="800" height="500">
                 </canvas>
             </div>
             <script type="text/javascript">
