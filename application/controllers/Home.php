@@ -298,9 +298,9 @@ class Home extends CI_Controller
         header("Access-Control-Allow-Origin: *");
 
         define('DB_HOST', 'localhost');
-        define('DB_USERNAME', 'root');
-        define('DB_PASSWORD', '');
-        define('DB_NAME', 'hrady_a_zamky');
+        define('DB_USERNAME', 'stefi7773');
+        define('DB_PASSWORD', 'bIHBUVufUV65648BKHKKHdcn');
+        define('DB_NAME', 'hrady');
 
         $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
@@ -328,9 +328,9 @@ class Home extends CI_Controller
         header("Access-Control-Allow-Origin: *");
 
         define('DB_HOST', 'localhost');
-        define('DB_USERNAME', 'root');
-        define('DB_PASSWORD', '');
-        define('DB_NAME', 'hrady_a_zamky');
+        define('DB_USERNAME', 'stefi7773');
+        define('DB_PASSWORD', 'bIHBUVufUV65648BKHKKHdcn');
+        define('DB_NAME', 'hrady');
 
         $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
@@ -358,9 +358,9 @@ class Home extends CI_Controller
         header("Access-Control-Allow-Origin: *");
 
         define('DB_HOST', 'localhost');
-        define('DB_USERNAME', 'root');
-        define('DB_PASSWORD', '');
-        define('DB_NAME', 'hrady_a_zamky');
+        define('DB_USERNAME', 'stefi7773');
+        define('DB_PASSWORD', 'bIHBUVufUV65648BKHKKHdcn');
+        define('DB_NAME', 'hrady');
 
         $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
