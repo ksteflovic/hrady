@@ -106,7 +106,7 @@ class Home extends CI_Controller
                 $sub_array[] = '<td><h5><span class="badge badge-danger">' . mb_strtoupper($hrad->Stav) . '</span></h5></td>';
             }
             $sub_array[] = '<button type="button" class="btn btn-outline-success" onclick="otvorView(this.id)" id="' . $hrad->id . '">Detail <i class="fas fa-eye"></i></button>';
-            $sub_array[] = '<button type="button" class="btn btn-outline-warning" onclick="otvorUpravu(this.id)" id="' . $hrad->id . '">Uprav <i class="fas fa-pencil-alt"></i></button>';
+            $sub_array[] = '<button type="button" class="btn btn-outline-warning" disabled onclick="otvorUpravu(this.id)" id="' . $hrad->id . '">Uprav <i class="fas fa-pencil-alt"></i></button>';
             $sub_array[] = '<button type="button" class="btn btn-outline-danger" disabled onclick="otvorVymaz(this.id)" id="' . $hrad->id . '">Vymaž <i class="fas fa-trash-alt"></i></button>';
             $pole[] = $sub_array;
         }
